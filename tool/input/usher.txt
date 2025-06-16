@@ -1,4 +1,19 @@
-灯:私は……
-灯:君に……幸せが……ほうしい
-灯:ありがとう……遠山ちゃん……
-灯:誕生日……おめでとう……
+intro:东山燃灯寺宣布并不对本视频大部分内容负责||存在部分圣剑使内容|| -fontSize=medium -backgroundColor=rgba(0, 0, 0, 1) -fontColor=rgba(255, 255, 255, 1) -animation=fadeIn -delayTime=1500 -hold;
+立希:喂！你这家伙，又弹错了！掰开掰开，自己给我掰开！
+changeBg:_spec/matched_E5_cool.png;
+changeFigure:东山新增/297模型/297爱音/model.json -id=anon -next -motion=cry02 -expression=cry01;
+setTransform:{"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=anon -duration=0 -next;
+角色名，留空以继承上句:立希的斥责打破了合练中的音乐，下一秒响起爱音的唐哭;
+爱音:rikki不要！用嘴行不行…不要啊！祥子今天还要来看我的…|不能让祥子发现我的异样啊
+changeFigure:东山新增/297模型/297立希/040_collabo_a_urmodel.json -left -id=taki -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=angry01 -expression=angry01;
+setTransform:{"position":{"x":-100},"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=taki -duration=0 -next;
+changeFigure:东山新增/297模型/297素世/039_collabo_a_urmodel.json -right -id=soyo -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=angry01 -expression=angry01;
+setTransform:{"position":{"x":100},"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=soyo -duration=0 -next;
+素世:为什么要叫小祥！我管你这的哪的赶紧给我掰开！
+changeFigure:东山新增/297模型/297灯/036_collabo_a_urmodel.json -left -id=tomori -next -motion=thinking01 -expression=thinking01;
+setTransform:{"position":{"x":-500},"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=tomori -duration=0 -next;
+灯:小爱……还是快一点好。早一点，我们都完事后，小爱可以早一点见小祥
+角色名，留空以继承上句:围绕着爱音的三人，都脱下了裙子，一时间整个mygo的练习室里，百鸟朝凤。
+changeFigure:东山新增/297模型/sakiko/event_297_story_01/model.json -right -id=sakiko -next -motion=cry06 -expression=cry04;
+setTransform:{"position":{"x":500},"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=sakiko -duration=0 -next;
+祥子:不可以迭斯瓦！爱音是我的女朋友，你们怎么可以这样！

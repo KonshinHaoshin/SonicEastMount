@@ -19,7 +19,12 @@ class SpeechGenApp(QMainWindow):
         self.setGeometry(100, 100, 800, 700)
 
         # 初始化基础配置
-        self.base_dir = os.path.abspath("GPT-SoVITS-v4-20250422fix")
+        from dotenv import load_dotenv
+
+        load_dotenv()
+        sovits_dir = os.getenv("SOVITS_DIR", "GPT-SoVITS-v4-20250422fix")
+        self.base_dir = os.path.abspath(sovits_dir)
+
 
         # ✅ 提前初始化 audio_dirs
         self.audio_dirs = {
@@ -52,6 +57,8 @@ class SpeechGenApp(QMainWindow):
         self.setup_reference_audio()
         # 语言选择组件
         self.setup_language_selection()
+        # 角色名输入组件
+        self.setup_character_input()
         # 提示语输入组件
         self.setup_prompt_input()
         # 权重文件选择组件
@@ -81,6 +88,15 @@ class SpeechGenApp(QMainWindow):
 
         self.layout.addLayout(button_layout)
 
+
+    def setup_character_input(self):
+        hbox = QHBoxLayout()
+        self.lbl_character = QLabel("角色名:")
+        self.txt_character = QLineEdit()
+        self.txt_character.setPlaceholderText("例如：anon 或 tomori")
+        hbox.addWidget(self.lbl_character)
+        hbox.addWidget(self.txt_character)
+        self.layout.addLayout(hbox)
     def list_files_in_subdirs(self, root_dir, suffixes):
         result = []
         for root, _, files in os.walk(root_dir):
@@ -402,15 +418,27 @@ class SpeechGenApp(QMainWindow):
         self.cmb_gpt_weights.currentTextChanged.connect(lambda: self.set_weight_from_dropdown("gpt"))
         self.cmb_sovits_weights.currentTextChanged.connect(lambda: self.set_weight_from_dropdown("sovits"))
 
+    import re
+
     def load_weight_files(self):
-        gpt_dir = os.path.join(self.base_dir, "GPT_weights_v4")
-        sovits_dir = os.path.join(self.base_dir, "SoVITS_weights_v4")
+        gpt_weights = []
+        sovits_weights = []
 
-        gpt_weights = self.list_files_in_subdirs(gpt_dir, [".ckpt", ".pth"])
-        sovits_weights = self.list_files_in_subdirs(sovits_dir, [".ckpt", ".pth"])
+        # 遍历 base_dir 下的所有子目录
+        for folder in os.listdir(self.base_dir):
+            folder_path = os.path.join(self.base_dir, folder)
+            if not os.path.isdir(folder_path):
+                continue
 
-        self.cmb_gpt_weights.addItems(gpt_weights)
-        self.cmb_sovits_weights.addItems(sovits_weights)
+            # 匹配 GPT 或 SoVITS 前缀的目录名
+            if folder.startswith("GPT_weights"):
+                gpt_weights += self.list_files_in_subdirs(folder_path, [".ckpt", ".pth"])
+            elif folder.startswith("SoVITS_weights"):
+                sovits_weights += self.list_files_in_subdirs(folder_path, [".ckpt", ".pth"])
+
+        # 加载到下拉框
+        self.cmb_gpt_weights.addItems(sorted(gpt_weights))
+        self.cmb_sovits_weights.addItems(sorted(sovits_weights))
 
     def set_weight_from_dropdown(self, weight_type):
         selected_path = self.cmb_gpt_weights.currentText() if weight_type == "gpt" else self.cmb_sovits_weights.currentText()
@@ -460,8 +488,11 @@ class SpeechGenApp(QMainWindow):
                 gpt_weight = self.cmb_gpt_weights.currentText()
                 sovits_weight = self.cmb_sovits_weights.currentText()
 
+                character = self.txt_character.text().strip() or "unknown"
+
                 for line in lines:
                     config = {
+                        "character": character,
                         "text": line,
                         "text_lang": text_lang,
                         "ref_audio_path": ref_audio,

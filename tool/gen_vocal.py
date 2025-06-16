@@ -89,8 +89,18 @@ class WorkerThread(QThread):
                     self.character_counters[character] += 1
                 index_number = self.character_counters[character]
 
-                filename = f"{character}_{self.base_name}_{index_number:02d}.wav"
-                output_dir = os.path.join(self.output_root, character, self.base_name)
+                # 拆分 base_name 为角色与场景（例如 anon_test → anon, test）
+                if "_" in self.base_name:
+                    parts = self.base_name.split("_", 1)
+                    folder_character = parts[0]
+                    folder_scene = parts[1]
+                else:
+                    folder_character = character
+                    folder_scene = self.base_name
+
+                filename = f"{self.base_name}_{index_number:02d}.wav"
+                output_dir = os.path.join(self.output_root, folder_character, folder_scene)
+                # output_dir = os.path.join(self.output_root, character, self.base_name)
                 os.makedirs(output_dir, exist_ok=True)
                 full_output_path = os.path.join(output_dir, filename)
 
@@ -284,6 +294,11 @@ class TTSApp(QMainWindow):
         try:
             with open(self.jsonl_file, 'r', encoding='utf-8') as f:
                 self.data_list = [json.loads(line.strip()) for line in f if line.strip()]
+
+            # 如果有 character 字段，使用第一个的值覆盖 self.character_name
+            if self.data_list and "character" in self.data_list[0]:
+                self.character_name = self.data_list[0]["character"]
+
             self.status_label.setText(f"状态: 已加载 {len(self.data_list)} 条数据")
             self.generate_btn.setEnabled(True)
         except Exception as e:
