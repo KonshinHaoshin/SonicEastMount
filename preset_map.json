@@ -1,0 +1,130 @@
+{
+  "anon": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mygo/anon/anon6.wav",
+    "prompt_text": "みんな平均寿命って知ってる? 私たちがおばあちゃんになる頃には90歳とか言われてるんだよ",
+    "gpt_weight": "GPT_weights_v2/mygo/anon_v2-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mygo/anon_v2_e8_s848.pth"
+  },
+  "umiri": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mujica/umiri/umiri01.mp3",
+    "prompt_text": "そうですか 朝っ端からニヤニヤ笑ってるのが通常運転とは知りませんでした",
+    "gpt_weight": "GPT_weights_v2/mujica/umiri-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mujica/umiri_e8_s136.pth"
+  },
+  "uika": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mujica/uika/uika01.mp3",
+    "prompt_text": "何も言わなかったから、また、人間になれなかった。",
+    "gpt_weight": "GPT_weights_v2/mujica/uika-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mujica/uika_e8_s128.pth"
+  },
+  "uika0": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mujica/uika/uika01.mp3",
+    "prompt_text": "何も言わなかったから、また、人間になれなかった。",
+    "gpt_weight": "GPT_weights_v2/mujica/uika-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mujica/uika_e8_s128.pth"
+  },
+  "sakiko": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/whitesakiko01.mp3",
+    "prompt_text": "むつみ、もう少し左ですわ。真ん中に立つくらいの気持ちでいないとダメですわよ",
+    "gpt_weight": "GPT_weights_v2/mujica/whitesakiko-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mujica/whitesakiko_e8_s272.pth"
+  },
+  "sakiko0": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/blacksakiko.mp3",
+    "prompt_text": "全員揃わないとできないルールなんてありませんわ。人のせいにしないで。",
+    "gpt_weight": "GPT_weights_v2/mujica/blacksakiko-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mujica/blacksakiko_e8_s256.pth"
+  },
+  "tomori": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/tomori03.wav",
+    "prompt_text": "早く戻ろ、私、ちゃんと歌えてた?",
+    "gpt_weight": "GPT_weights_v2/mygo/tomori_v2-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mygo/tomori_v2_e8_s592.pth"
+  },
+  "taki": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/taki.04.wav",
+    "prompt_text": "これ、いいかも。カラオケはよく行くけど。",
+    "gpt_weight": "GPT_weights_v2/mygo/椎名立希V2-e30.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mygo/椎名立希V2_e30_s450.pth"
+  },
+  "mutsumi": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mutsumi0.wav",
+    "prompt_text": "私はバンド楽しいって思ったこと",
+    "gpt_weight": "GPT_weights_v2/mujica/mutsumi_v2-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mujica/mutsumi_v2_e8_s120.pth"
+  },
+  "soyorin": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/soyo02_0.wav",
+    "prompt_text": "今日も菜園のお世話してるの?これは何の野菜?ピーマンかな?",
+    "gpt_weight": "GPT_weights_v2/mygo/soyo_01_v2-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mygo/soyo_01_v2_e8_s280.pth"
+  },
+  "rana": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/rana2.wav",
+    "prompt_text": "ふん、感動した。そうだね、もう一個。",
+    "gpt_weight": "GPT_weights_v2/mygo/rana-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mygo/rana_e8_s320.pth"
+  },
+  "mortis": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mujica/mortis/mortis15.wav",
+    "prompt_text": "サキ子ちゃんが無事かやりたいって言うからやってるだけ\nギターなんて持ったことないもん",
+    "gpt_weight": "GPT_weights_v2/mujica/mortis-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mujica/mortis_e8_s128.pth"
+  },
+  "kokoro": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/other/kokoro/band3-001-002.mp3",
+    "prompt_text": "あ、そこのあなた!ねぇ、何がいいと思う?",
+    "gpt_weight": "GPT_weights_v2/other/kokoro-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/other/kokoro_e4_s256.pth"
+  },
+  "nyamu": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mujica/nyamu/nyamu01.wav",
+    "prompt_text": "こんばんにゃむにゃむ!にゃむちでーす!",
+    "gpt_weight": "GPT_weights_v2/mujica/nyamu-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mujica/nyamu_e8_s328.pth"
+  },
+  "soyo": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/soyo01_01.wav",
+    "prompt_text": "むつみちゃん、本当に思ったことそのまま言うよね。",
+    "gpt_weight": "GPT_weights_v2/mygo/soyo_v2-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mygo/soyo_v2_e8_s440.pth"
+  },
+  "mana": {
+    "text_lang": "all_ja",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/other/mana/mana01.wav",
+    "prompt_text": "﻿ういちゃん今日の歌めっちゃ良かった\nえへへ、褒められた",
+    "gpt_weight": "GPT_weights_v2/other/mana-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/other/mana_e8_s112.pth"
+  }
+}
