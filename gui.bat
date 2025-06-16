@@ -1,2 +1,2 @@
-GPT-SoVITS-v2-240821\runtime\python.exe gui.py
+GPT-SoVITS-v4-20250422fix\runtime\python.exe gui.py
 pause

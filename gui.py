@@ -210,12 +210,12 @@ class UsherGUI(QMainWindow):
 
     def handle_stdout(self):
         """Handle standard output from the process."""
-        output = self.process.readAllStandardOutput().data().decode()
+        output = self.process.readAllStandardOutput().data().decode("gbk", errors="ignore")
         self.status_label.setText(output)
 
     def handle_stderr(self):
         """Handle error output from the process."""
-        error = self.process.readAllStandardError().data().decode()
+        error = self.process.readAllStandardError().data().decode("gbk", errors="ignore")
         QMessageBox.critical(self, "脚本错误", error)
 
     def open_output_folder(self):

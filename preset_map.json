@@ -2,10 +2,10 @@
   "anon": {
     "text_lang": "all_ja",
     "prompt_lang": "all_ja",
-    "ref_audio_path": "vocal/mygo/anon/anon6.wav",
-    "prompt_text": "みんな平均寿命って知ってる? 私たちがおばあちゃんになる頃には90歳とか言われてるんだよ",
-    "gpt_weight": "GPT_weights_v2/mygo/anon_v2-e15.ckpt",
-    "sovits_weight": "SoVITS_weights_v2/mygo/anon_v2_e8_s848.pth"
+    "ref_audio_path": "vocal/mygo/anon/Anon (1).wav",
+    "prompt_text": "千早アノンです。家の都合で変な時期の入学ですが、よかったら仲良くしてください。よろしくお願いします。",
+    "gpt_weight": "GPT_weights_v4/Anon_V4-e50.ckpt",
+    "sovits_weight": "SoVITS_weights_v4/Anon_V4_e6_s4476_l64.pth"
   },
   "umiri": {
     "text_lang": "all_ja",
@@ -52,8 +52,8 @@
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/tomori03.wav",
     "prompt_text": "早く戻ろ、私、ちゃんと歌えてた?",
-    "gpt_weight": "GPT_weights_v2/mygo/tomori_v2-e15.ckpt",
-    "sovits_weight": "SoVITS_weights_v2/mygo/tomori_v2_e8_s592.pth"
+    "gpt_weight": "GPT_weights_v4/Tomori_V4-e30.ckpt",
+    "sovits_weight": "SoVITS_weights_v4/Tomori_V4_e6_s3558_l64.pth"
   },
   "taki": {
     "text_lang": "all_ja",

@@ -19,7 +19,7 @@ class SpeechGenApp(QMainWindow):
         self.setGeometry(100, 100, 800, 700)
 
         # 初始化基础配置
-        self.base_dir = os.path.abspath("GPT-SoVITS-v2-240821")
+        self.base_dir = os.path.abspath("GPT-SoVITS-v4-20250422fix")
 
         # ✅ 提前初始化 audio_dirs
         self.audio_dirs = {
@@ -403,8 +403,8 @@ class SpeechGenApp(QMainWindow):
         self.cmb_sovits_weights.currentTextChanged.connect(lambda: self.set_weight_from_dropdown("sovits"))
 
     def load_weight_files(self):
-        gpt_dir = os.path.join(self.base_dir, "GPT_weights_v2")
-        sovits_dir = os.path.join(self.base_dir, "SoVITS_weights_v2")
+        gpt_dir = os.path.join(self.base_dir, "GPT_weights_v4")
+        sovits_dir = os.path.join(self.base_dir, "SoVITS_weights_v4")
 
         gpt_weights = self.list_files_in_subdirs(gpt_dir, [".ckpt", ".pth"])
         sovits_weights = self.list_files_in_subdirs(sovits_dir, [".ckpt", ".pth"])
