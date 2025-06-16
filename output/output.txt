@@ -1,4 +1,0 @@
-灯:私は…… -tomori/tmtk/tomori_tmtk_01.wav -fontSize=default -id -figureId=tomori;
-灯:君に……幸せが……ほうしい -tomori/tmtk/tomori_tmtk_02.wav -fontSize=default -id -figureId=tomori;
-灯:ありがとう……遠山ちゃん…… -tomori/tmtk/tomori_tmtk_03.wav -fontSize=default -id -figureId=tomori;
-灯:誕生日……おめでとう…… -tomori/tmtk/tomori_tmtk_04.wav -fontSize=default -id -figureId=tomori;
