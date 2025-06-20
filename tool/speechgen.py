@@ -20,11 +20,9 @@ class SpeechGenApp(QMainWindow):
 
         # 初始化基础配置
         from dotenv import load_dotenv
-
         load_dotenv()
         sovits_dir = os.getenv("SOVITS_DIR", "GPT-SoVITS-v4-20250422fix")
         self.base_dir = os.path.abspath(sovits_dir)
-
 
         # ✅ 提前初始化 audio_dirs
         self.audio_dirs = {
@@ -33,7 +31,6 @@ class SpeechGenApp(QMainWindow):
         }
         self.api_bat_path = os.path.normpath(os.path.join(self.base_dir, "api.bat"))
 
-        self.init_cyberpunk_style()
         self.init_ui()
         QTimer.singleShot(1000, self.start_api_service)
 
@@ -53,36 +50,27 @@ class SpeechGenApp(QMainWindow):
 
         # 文件选择组件
         self.setup_file_selection()
-        # 新增参考音频选择组件
         self.setup_reference_audio()
-        # 语言选择组件
         self.setup_language_selection()
-        # 角色名输入组件
         self.setup_character_input()
-        # 提示语输入组件
         self.setup_prompt_input()
-        # 权重文件选择组件
         self.setup_weights_selection()
-        # 预设选择组件
         self.setup_preset_generation()
-        # 保存预设
         self.setup_save_preset()
-        # 切换预设语言
         self.setup_batch_update_lang()
 
         self.output_text = QTextEdit()
-        self.output_text.setStyleSheet(
-            "background-color: #272822; color: #a6e22e; border: 2px solid #66d9ef; padding: 5px; font-size: 14px;")
+        self.output_text.setObjectName("output_text")
         self.layout.addWidget(self.output_text)
 
         button_layout = QHBoxLayout()
         self.btn_generate = QPushButton("生成配置文件")
-        self.btn_generate.setStyleSheet("background-color: #a6e22e; color: #272822; border-radius: 5px; padding: 10px; font-size: 16px;")
+        self.btn_generate.setObjectName("btn_generate")
         self.btn_generate.clicked.connect(self.generate_config)
         button_layout.addWidget(self.btn_generate)
 
         self.btn_gen_vocal = QPushButton("跳转到音频生成")
-        self.btn_gen_vocal.setStyleSheet("background-color: #fd971f; color: #272822; border-radius: 5px; padding: 10px; font-size: 16px;")
+        self.btn_gen_vocal.setObjectName("btn_gen_vocal")
         self.btn_gen_vocal.clicked.connect(self.run_gen_vocal)
         button_layout.addWidget(self.btn_gen_vocal)
 
@@ -548,6 +536,13 @@ class SpeechGenApp(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+
+    qss_path = os.path.join(os.path.dirname(__file__), "../assets/style.qss")  # 相对路径
+    if os.path.exists(qss_path):
+        with open(qss_path, "r", encoding="utf-8") as f:
+            app.setStyleSheet(f.read())
+
     window = SpeechGenApp()
     window.show()
     sys.exit(app.exec_())

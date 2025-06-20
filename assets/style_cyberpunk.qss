@@ -1,0 +1,150 @@
+QMainWindow {
+    background-color: #0f0f1e;
+    color: #c8c8ff;
+    font-family: FZShuTi;
+    font-size: 10pt;
+}
+
+QLabel {
+    color: #c8c8ff;
+    font-size: 14px;
+}
+
+QLabel#scene_label {
+    color: #66d9ef;
+    font-size: 16px;
+}
+QLabel#text_label {
+    color: #f92672;
+    font-size: 16px;
+}
+
+QLineEdit, QTextEdit {
+    background-color: #272822;
+    color: #f8f8f2;
+    border: 2px solid #ae81ff;
+    padding: 5px;
+    font-size: 14px;
+}
+
+QLineEdit#char_name_input {
+    color: #a6e22e;
+}
+QLineEdit#char_id_input {
+    color: #66d9ef;
+}
+
+QCheckBox {
+    font-size: 14px;
+    color: #a6e22e;
+}
+QCheckBox#chk_dialogue {
+    color: #fd971f;
+}
+
+QPushButton {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QPushButton#btn_run {
+    background-color: #66d9ef;
+    color: #272822;
+}
+QPushButton#btn_open {
+    background-color: #a6e22e;
+    color: #272822;
+}
+QPushButton#btn_speechgen {
+    background-color: #fd971f;
+    color: #272822;
+}
+QPushButton#btn_add_char {
+    background-color: #a6e22e;
+    color: #272822;
+    font-weight: bold;
+    padding: 5px;
+}
+
+QLabel#status_label {
+    color: #ae81ff;
+    font-size: 14px;
+}
+
+QPushButton#btn_generate {
+    background-color: #a6e22e;
+}
+
+QPushButton#btn_gen_vocal,
+QPushButton#btn_choose {
+    background-color: #fd971f;
+}
+
+QPushButton#btn_choose_scene_json,
+QPushButton#btn_batch_update_lang {
+    background-color: #66d9ef;
+}
+
+QPushButton#btn_save_current_preset {
+    background-color: #a6e22e;
+}
+
+QTreeWidget {
+    background-color: #272822;
+    color: #a6e22e;
+    border: 1px solid #66d9ef;
+    font-size: 13px;
+}
+
+QProgressBar {
+    background-color: #1e1e1e;
+    border: 2px solid #66d9ef;
+    border-radius: 5px;
+    text-align: center;
+    color: #f8f8f2;
+}
+QProgressBar::chunk {
+    background-color: #a6e22e;
+}
+
+QPushButton#btn_select_jsonl,
+QPushButton#btn_select_output {
+    background-color: #66d9ef;
+    color: #272822;
+}
+
+QPushButton#btn_generate_audio {
+    background-color: #a6e22e;
+    color: #272822;
+}
+
+QPushButton#btn_play,
+QPushButton#btn_regen {
+    background-color: #fd971f;
+    color: #272822;
+}
+
+QLabel#status_label {
+    color: #ae81ff;
+    font-size: 14px;
+}
+
+QProgressBar#progress_bar {
+    background-color: #1e1e1e;
+    border: 2px solid #66d9ef;
+    border-radius: 5px;
+    text-align: center;
+    color: #f8f8f2;
+}
+QProgressBar#progress_bar::chunk {
+    background-color: #a6e22e;
+}
+
+QTreeWidget#audio_list {
+    background-color: #272822;
+    color: #a6e22e;
+    border: 1px solid #66d9ef;
+    font-size: 13px;
+}

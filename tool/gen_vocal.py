@@ -98,7 +98,7 @@ class WorkerThread(QThread):
                     folder_character = character
                     folder_scene = self.base_name
 
-                filename = f"{self.base_name}_{index_number:02d}.wav"
+                filename = f"{character}_{folder_scene}_{index_number:02d}.wav"
                 output_dir = os.path.join(self.output_root, folder_character, folder_scene)
                 # output_dir = os.path.join(self.output_root, character, self.base_name)
                 os.makedirs(output_dir, exist_ok=True)
@@ -121,7 +121,7 @@ class WorkerThread(QThread):
 
                 # 请求生成
                 try:
-                    response = requests.post(url, json=data, timeout=30)
+                    response = requests.post(url, json=data, timeout=600) ## 我不信一条语音十分钟跑不出来
                 except requests.RequestException as e:
                     self.update_status.emit(f"第 {i + 1} 条错误: 网络请求失败 {str(e)}")
                     self.progress_changed.emit(i + 1)
@@ -216,6 +216,15 @@ class TTSApp(QMainWindow):
         self.progress_bar.setValue(0)
         self.progress_bar.setFormat("进度: %p%")
         self.layout.addWidget(self.progress_bar)
+
+        self.select_jsonl_btn.setObjectName("btn_select_jsonl")
+        self.select_output_btn.setObjectName("btn_select_output")
+        self.generate_btn.setObjectName("btn_generate_audio")
+        self.play_btn.setObjectName("btn_play")
+        self.regenerate_btn.setObjectName("btn_regen")
+        self.status_label.setObjectName("status_label")
+        self.progress_bar.setObjectName("progress_bar")
+        self.audio_list.setObjectName("audio_list")
 
     def select_jsonl_file(self):
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -407,6 +416,13 @@ class TTSApp(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+    # ✅ 加载外部 QSS 样式
+    qss_path = os.path.join(os.path.dirname(__file__), "../assets/style.qss")
+    if os.path.exists(qss_path):
+        with open(qss_path, "r", encoding="utf-8") as f:
+            app.setStyleSheet(f.read())
+
     window = TTSApp()
     window.show()
     sys.exit(app.exec_())

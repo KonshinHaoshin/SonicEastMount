@@ -33,58 +33,48 @@ class UsherGUI(QMainWindow):
 
         # Scene Name Input
         self.scene_label = QLabel("请输入场景名称:", self)
-        self.scene_label.setStyleSheet("color: #66d9ef; font-size: 16px;")
         layout.addWidget(self.scene_label)
 
         self.scene_input = QLineEdit(self)
-        self.scene_input.setStyleSheet(
-            "background-color: #272822; color: #a6e22e; border: 2px solid #66d9ef; padding: 5px; font-size: 14px;")
+
         layout.addWidget(self.scene_input)
 
         # Text Input Area
         self.text_label = QLabel("请输入或粘贴文本内容:", self)
-        self.text_label.setStyleSheet("color: #f92672; font-size: 16px;")
         layout.addWidget(self.text_label)
 
         self.text_input = QTextEdit(self)
-        self.text_input.setStyleSheet(
-            "background-color: #272822; color: #f8f8f2; border: 2px solid #ae81ff; padding: 5px; font-size: 14px;")
+
         layout.addWidget(self.text_input)
 
         # Audio Checkbox
         self.audio_checkbox = QCheckBox("是否插入音频", self)
-        self.audio_checkbox.setStyleSheet("color: #a6e22e; font-size: 14px;")
         layout.addWidget(self.audio_checkbox)
 
         # Organize Dialogue Checkbox
         self.dialogue_checkbox = QCheckBox("是否整理各角色台词", self)
-        self.dialogue_checkbox.setStyleSheet("color: #fd971f; font-size: 14px;")
         layout.addWidget(self.dialogue_checkbox)
 
         # Run Button
         self.run_button = QPushButton("运行脚本", self)
-        self.run_button.setStyleSheet(
-            "background-color: #66d9ef; color: #272822; border-radius: 5px; padding: 10px; font-size: 16px; font-weight: bold;")
+
         self.run_button.clicked.connect(self.run_script)
         layout.addWidget(self.run_button)
 
         # Open Output Folder Button
         self.output_button = QPushButton("打开台词文件夹", self)
-        self.output_button.setStyleSheet(
-            "background-color: #a6e22e; color: #272822; border-radius: 5px; padding: 10px; font-size: 16px; font-weight: bold;")
+
         self.output_button.clicked.connect(self.open_output_folder)
         layout.addWidget(self.output_button)
 
         # Speech Generation Button
         self.speechgen_button = QPushButton("生成语音所需的json文件", self)
-        self.speechgen_button.setStyleSheet(
-            "background-color: #fd971f; color: #272822; border-radius: 5px; padding: 10px; font-size: 16px; font-weight: bold;")
+
         self.speechgen_button.clicked.connect(self.run_speechgen_script)
         layout.addWidget(self.speechgen_button)
 
         # Status Label
         self.status_label = QLabel("", self)
-        self.status_label.setStyleSheet("color: #ae81ff; font-size: 14px;")
         layout.addWidget(self.status_label)
 
         # Set Central Widget
@@ -103,15 +93,12 @@ class UsherGUI(QMainWindow):
 
         self.char_name_input = QLineEdit()
         self.char_name_input.setPlaceholderText("输入角色中文名 (如 爱音)")
-        self.char_name_input.setStyleSheet("background-color: #272822; color: #a6e22e; padding: 5px;")
 
         self.char_id_input = QLineEdit()
         self.char_id_input.setPlaceholderText("输入角色英文ID (如 anon)")
-        self.char_id_input.setStyleSheet("background-color: #272822; color: #66d9ef; padding: 5px;")
 
         self.add_char_map_button = QPushButton("添加角色映射")
-        self.add_char_map_button.setStyleSheet(
-            "background-color: #a6e22e; color: #272822; font-weight: bold; padding: 5px;")
+
         self.add_char_map_button.clicked.connect(self.add_character_mapping)
 
         self.char_map_layout.addWidget(self.char_name_input)
@@ -273,6 +260,12 @@ class UsherGUI(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+    # 加载 QSS 样式
+    qss_path = os.path.join(os.path.dirname(__file__), "assets", "style.qss")
+    with open(qss_path, "r", encoding="utf-8") as f:
+        app.setStyleSheet(f.read())
+
     window = UsherGUI()
     window.show()
     sys.exit(app.exec_())
