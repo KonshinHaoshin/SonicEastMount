@@ -520,22 +520,23 @@ class SpeechGenApp(QMainWindow):
 
     def run_gen_vocal(self):
         gen_vocal_path = os.path.normpath(os.path.join(os.path.dirname(__file__), "gen_vocal.py"))
-        python_path = sys.executable  # 当前正在运行的 Python 解释器路径
+        python_path = sys.executable  # 当前运行的 Python 路径
 
         try:
             if not os.path.exists(gen_vocal_path):
                 raise FileNotFoundError(f"gen_vocal.py 文件不存在：{gen_vocal_path}")
 
             subprocess.Popen(
-                f'start cmd /k "{python_path}" "{gen_vocal_path}"',
-                shell=True,
+                ["cmd", "/k", python_path, gen_vocal_path],
                 cwd=os.path.dirname(gen_vocal_path),
                 creationflags=subprocess.CREATE_NEW_CONSOLE
             )
+
             self.output_text.append(
                 f"🚀 已启动 gen_vocal.py\n▸ 路径：{gen_vocal_path}\n▸ Python：{python_path}\n▸ 在新窗口中运行")
         except Exception as e:
             self.output_text.append(f"❌ 启动 gen_vocal.py 失败：{str(e)}")
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
