@@ -1,115 +1,23 @@
-intro:东山燃灯寺宣布并不对本视频大部分内容负责||存在部分圣剑使内容|| -fontSize=medium -backgroundColor=rgba(0, 0, 0, 1) -fontColor=rgba(255, 255, 255, 1) -animation=fadeIn -delayTime=1500 -hold;
-立希:喂！你这家伙，又弹错了！掰开掰开，自己给我掰开！
-changeBg:_spec/matched_E5_cool.png;
-changeFigure:东山新增/297模型/297爱音/model.json -id=anon -next -motion=cry02 -expression=cry01;
-setTransform:{"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=anon -duration=0 -next;
-角色名，留空以继承上句:立希的斥责打破了合练中的音乐，下一秒响起爱音的唐哭;
-爱音:rikki不要！用嘴行不行…不要啊！祥子今天还要来看我的…|不能让祥子发现我的异样啊
-changeFigure:东山新增/297模型/297立希/040_collabo_a_urmodel.json -left -id=taki -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=angry01 -expression=angry01;
-setTransform:{"position":{"x":-100},"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=taki -duration=0 -next;
-changeFigure:东山新增/297模型/297素世/039_collabo_a_urmodel.json -right -id=soyo -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=angry01 -expression=angry01;
-setTransform:{"position":{"x":100},"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=soyo -duration=0 -next;
-素世:为什么要叫小祥！我管你这的哪的赶紧给我掰开！
-changeFigure:东山新增/297模型/297灯/036_collabo_a_urmodel.json -left -id=tomori -next -motion=thinking01 -expression=thinking01;
-setTransform:{"position":{"x":-500},"scale":{"x":0.9,"y":0.9},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=tomori -duration=0 -next;
-灯:小爱……还是快一点好。早一点，我们都完事后，小爱可以早一点见小祥
-setTransform:{"position":{"x":-100,"y":100},"scale":{"x":0.7,"y":0.7},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=taki -duration=500 -next;
-setTransform:{"position":{"x":100,"y":100},"scale":{"x":0.7,"y":0.7},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=soyo -duration=500 -next;
-setTransform:{"position":{"x":-500,"y":100},"scale":{"x":0.7,"y":0.7},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=tomori -duration=500 -next;
-setTransform:{"position":{"y":100},"scale":{"x":0.7,"y":0.7},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=anon -duration=500 -next;
-角色名，留空以继承上句:围绕着爱音的三人，都脱下了裙子，一时间整个mygo的练习室里，百鸟朝凤。
-changeFigure:东山新增/297模型/sakiko/event_297_story_01/model.json -right -id=sakiko -next -motion=cry06 -expression=cry04;
-setTransform:{"position":{"x":500,"y":100},"scale":{"x":0.7,"y":0.7},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=sakiko -duration=0 -next;
-祥子:不可以迭斯瓦！爱音是我的女朋友，你们怎么可以这样！
-changeFigure:东山新增/297模型/297爱音/model.json -id=anon -next -motion=beiji_surprised11 -expression=beiji_唐笑02;
-爱音:祥祥！太好了你居然提前来了。救救我……
-changeFigure:东山新增/297模型/297立希/040_collabo_a_urmodel.json -left -id=taki -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=angry02 -expression=angry02;
-立希:爱音是我们乐队的人，当然要遵守我们乐队的关系。和是你女朋友有什么关系。
-changeFigure:东山新增/297模型/sakiko/event_297_story_01/model.json -right -id=sakiko -next -motion=angry07 -expression=angry07;
-祥子:立希你……
-喵梦:老大，我们干脆来比一场吧。让爱音自己选不好吗
-changeFigure:东山新增/297模型/297立希/040_collabo_a_urmodel.json -left -id=taki -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=angry04 -expression=angry04;
-立希:比就比，团队赛，看谁让爱音去的次数最多
-changeFigure:none -id=anon;
-changeFigure:东山新增/297模型/297爱音/model.json -id=anon -next -motion=cry01 -expression=cry01;
-setTransform:{"position":{"y":100},"scale":{"x":0.7,"y":0.7},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=anon -duration=500 -next;
-角色名，留空以继承上句:立希很有信心，她认为她的铁棒不会输给任何人。尽管爱音经常说她早泄
-changeFigure:东山新增/297模型/297爱音/model.json -id=anon -next -motion=kandou01 -expression=kandou02;
-爱音:不……不要啊
-角色名，留空以继承上句:但这里，她的意见最为无关紧要。当双方摩拳擦掌准备把爱音超的逼飞奶炸时，超自然事件，发生了：
-setTransform:{"position":{"x":75,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=taki -duration=500 -next;
-setTransform:{"position":{"x":-75,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=soyo -duration=500 -next;
-setTransform:{"position":{"x":-250,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=tomori -duration=500 -next;
-setTransform:{"position":{"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=anon -duration=500 -next;
-setTransform:{"position":{"x":250,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=sakiko -duration=0 -next;
-changeFigure:东山新增/297模型/mutsumi/event_297_story_01/model.json -right -id=mutsumi -next -motion=smile01 -expression=smile01;
-setTransform:{"position":{"x":550,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=mutsumi -duration=0 -next;
-睦:大家好，我叫“角色名，留空以继承上句”，你也可以叫睦，很荣幸过来论剑爱音。
-changeFigure:东山新增/297模型/297乐奈/038_collabo_a_urmodel.json -left -id=rana -next -motion=smile01 -expression=smile01;
-setTransform:{"position":{"x":-550,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=rana -duration=0 -next;
-乐奈:爱音我来XX你了！
-setTransform:{"position":{"x":600,"y":100},"scale":{"x":0.6,"y":0.6},"rotation":1,"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=rana -duration=500 -next;
-changeFigure:东山新增/297模型/297爱音/model.json -id=anon -next -motion=sad01 -expression=com_娇羞;
-爱音:不要啊！
-changeFigure:东山新增/297模型/297乐奈/038_collabo_a_urmodel.json -left -id=rana -next -motion=surprised01 -expression=surprised01;
-setTransform:{"position":{"x":-550,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=rana -duration=500 -next;
-乐奈:肉蝴蝶！
-changeFigure:东山新增/297模型/297爱音/model.json -id=anon -next -motion=beiji_surprised11 -expression=beiji_下看震惊01;
-changeFigure:东山新增/297模型/mutsumi/event_297_story_01/model.json -right -id=mutsumi -next -motion=surprised01 -expression=surprised01;
-睦:那是什么！
-changeFigure:东山新增/297模型/sakiko/event_297_story_01/model.json -right -id=sakiko -next -motion=surprised01 -expression=L_Boby_UP;
-祥子:那..…那是爱音的X！
-changeFigure:东山新增/297模型/297素世/039_collabo_a_urmodel.json -right -id=soyo -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=surprised01 -expression=surprised01;
-changeFigure:东山新增/297模型/297立希/040_collabo_a_urmodel.json -left -id=taki -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=surprised01 -expression=surprised01;
-changeFigure:东山新增/297模型/297乐奈/038_collabo_a_urmodel.json -left -id=rana -next -motion=surprised01 -expression=surprised01;
-changeFigure:东山新增/297模型/297灯/036_collabo_a_urmodel.json -left -id=tomori -next -motion=surprised01 -expression=surprised01;
-changeFigure:东山新增/297模型/mutsumi/event_297_story_01/model.json -right -id=mutsumi -next -motion=surprised02 -expression=surprised02;
-角色名，留空以继承上句:祥子，祥子绝对不会认错，自己女朋友的o。她绝对绝对确信。
-角色名，留空以继承上句:爱音的批，离家出走了。
-肉蝴蝶:我厌倦了……厌倦了天天被o的日子……我要去追寻自己的自由了。
-肉蝴蝶:爱音，跟着你我吃的很好。日后我们还会再见。
-角色名，留空以继承上句:肉蝴蝶越飞越高，飞出了练习室，众人追出去看时，她已经飞到了天空之上。
+;bgm:手游bgm/69_dark_waltz.mp3;
+changeBg:I（舞台）/1.png -next;
+setTransform:{"brightness":0.7,"contrast":0.8,"saturation":0.7,"gamma":0.5,"colorRed":212,"colorGreen":219,"colorBlue":233,"bloom":1,"bloomBrightness":0.7,"bloomBlur":10} -target=bg-main -duration=0 -next;
+changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_bow -expression=smile01;
+setTransform:{"brightness":0.8,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":220,"colorGreen":216,"colorBlue":232,"bloom":0.5,"bloomBrightness":0.8,"bloomBlur":10,"bevel":1,"bevelThickness":15,"bevelRotation":30,"bevelRed":176,"bevelGreen":196,"bevelBlue":255} -target=sakiko -duration=0;
+祥子:欢迎来到 Ave Mujica 的化妆舞会。今夜，为了各位嘉宾，我们准备了美丽的洋娃娃们 -sakiko/spec/event297-01-001.mp3 -id -figureId=sakiko;
+changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_nnf_left01 -expression=serious02;
+祥子:这是聪明的timoris -sakiko/spec/event297-01-006.mp3 -id -figureId=sakiko;
+changeFigure:东山新增/297模型/umiri/event_297_story_01/model.json -left -id=umiri -transform={"position":{"x":-200}} -next -motion=maskon_serious01 -expression=serious01;
+setTransform:{"position":{"x":-200},"brightness":0.8,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":220,"colorGreen":216,"colorBlue":232,"bloom":0.5,"bloomBrightness":0.8,"bloomBlur":10,"bevel":1,"bevelThickness":15,"bevelRotation":30,"bevelRed":176,"bevelGreen":196,"bevelBlue":255} -target=umiri -duration=0;
+海铃:我跟你说了多少遍了，第一题求平均2，8，14，16，20。求出来就是平均分44！ -umiri/xingbing/umiri_xingbing_01.wav -fontSize=default -id -figureId=umiri;
+changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_angry01 -expression=angry07;
+祥子:byd我们彩排呢！别给你那小女友打电话！ -sakiko/xingbing/sakiko_xingbing_03.wav -fontSize=default -id -figureId=sakiko;
+changeFigure:东山新增/297模型/umiri/event_297_story_01/model.json -left -id=umiri -next -motion=maskon_sad01 -expression=sad01;
+海铃:好的好的，我的问题 -umiri/xingbing/umiri_xingbing_02.wav -fontSize=default -id -figureId=umiri;
+changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_smile01 -expression=chunping01;
+祥子:慈爱的aminos -sakiko/spec/event297-01-007.mp3 -id -figureId=sakiko;
+changeFigure:东山新增/297模型/nyamu/event_297_story_01/model.json -right -id=nyamu -next -motion=maskon_serious01 -expression=surprised01;
+setTransform:{"position":{"x":200},"brightness":0.8,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":220,"colorGreen":216,"colorBlue":232,"bloom":0.5,"bloomBrightness":0.8,"bloomBlur":10,"bevel":1,"bevelThickness":15,"bevelRotation":30,"bevelRed":176,"bevelGreen":196,"bevelBlue":255} -target=nyamu -duration=0;
+喵梦:这表情是人能做出来的啊…… -nyamu/xingbing/nyamu_xingbing_01.wav -fontSize=default -id -figureId=nyamu;
+changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_smile01 -expression=chunping01;
+祥子:心慈的doloris -sakiko/spec/event297-01-008.mp3 -id -figureId=sakiko;
 :;
-setTransform:{"position":{"x":2000,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=taki -duration=500 -next;
-setTransform:{"position":{"x":2000,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=soyo -duration=500 -next;
-setTransform:{"position":{"x":2000,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=tomori -duration=500 -next;
-setTransform:{"position":{"x":2000,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=anon -duration=500 -next;
-setTransform:{"position":{"x":2000,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=sakiko -duration=500 -next;
-setTransform:{"position":{"x":2000,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=mutsumi -duration=500 -next;
-setTransform:{"position":{"x":2000,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":161,"colorGreen":213,"colorBlue":243,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=rana -duration=500 -next;
-:;
-changeBg:_spec/matched_E2_cool.png;
-setTransform:{"position":{"x":75,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=taki -duration=500 -next;
-setTransform:{"position":{"x":-75,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=soyo -duration=500 -next;
-setTransform:{"position":{"x":-250,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=tomori -duration=500 -next;
-setTransform:{"position":{"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=anon -duration=500 -next;
-setTransform:{"position":{"x":250,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=sakiko -duration=500 -next;
-setTransform:{"position":{"x":550,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=mutsumi -duration=500 -next;
-setTransform:{"position":{"x":-550,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=rana -duration=500 -next;
-changeFigure:东山新增/297模型/297素世/039_collabo_a_urmodel.json -right -id=soyo -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=surprised01 -expression=surprised01;
-changeFigure:东山新增/297模型/297立希/040_collabo_a_urmodel.json -left -id=taki -transform={"scale":{"x":0.9,"y":0.9}} -next -motion=surprised01 -expression=surprised01;
-changeFigure:东山新增/297模型/297乐奈/038_collabo_a_urmodel.json -left -id=rana -next -motion=cry01 -expression=cry01;
-changeFigure:东山新增/297模型/297灯/036_collabo_a_urmodel.json -left -id=tomori -next -motion=cry01 -expression=cry01;
-changeFigure:东山新增/297模型/mutsumi/event_297_story_01/model.json -right -id=mutsumi -next -motion=cry01 -expression=cry01;
-changeFigure:东山新增/297模型/297爱音/model.json -id=anon -next -motion=cry01 -expression=cry01;
-changeFigure:东山新增/297模型/sakiko/event_297_story_01/model.json -right -id=sakiko -next -motion=cry01 -expression=cry01;
-爱音:不要走啊，我的XX。你走了我的嘴巴怎么办！！
-changeFigure:东山新增/297模型/sakiko/event_297_story_01/model.json -right -id=sakiko -next -motion=smile01 -expression=smile02;
-祥子:对哦，爱音还有嘴巴
-changeFigure:东山新增/297模型/uika/event_297_story_01/model.json -right -id=uika -next -motion=new_watchphone -expression=smile01;
-setTransform:{"position":{"x":750,"y":200},"scale":{"x":0.6,"y":0.6},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=uika -duration=500 -next;
-初华:嘿嘿，小手机真好玩~
-:;
-changeFigure:none -id=uika -next;
-changeFigure:none -id=mutsumi -next;
-changeFigure:none -id=anon -next;
-changeFigure:none -id=soyo -next;
-changeFigure:none -id=sakiko -next;
-changeFigure:none -id=rana -next;
-changeFigure:none -id=taki -next;
-setTransform:{"position":{"x":450,"y":0},"brightness":0.9,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":176,"colorGreen":203,"colorBlue":222,"bevel":15,"bevelThickness":10,"bevelRed":227,"bevelGreen":250,"bevelBlue":252} -target=tomori -duration=500 -next;
-changeFigure:东山新增/297模型/297灯/036_collabo_a_urmodel.json -left -id=tomori -next -motion=angry01 -expression=angry01;
-灯:爱音的批，我会找到你的
-小小灯:我一定会找到你的！
-角色名，留空以继承上句:你燃x你x
-intro:欢迎收看下一集|受不了没有爱音b的日子的灯的牛子决定去找爱音|我到底为什么要做这个|麻了|或许会有下一集吧 -fontSize=medium -backgroundColor=rgba(0, 0, 0, 1) -fontColor=rgba(255, 255, 255, 1) -animation=fadeIn -delayTime=1500 -hold;

@@ -142,5 +142,13 @@
     "prompt_text": "﻿ういちゃん今日の歌めっちゃ良かった\nえへへ、褒められた",
     "gpt_weight": "GPT_weights_v2/other/mana-e15.ckpt",
     "sovits_weight": "SoVITS_weights_v2/other/mana_e8_s112.pth"
+  },
+  "dingzhen": {
+    "text_lang": "all_zh",
+    "prompt_lang": "all_zh",
+    "ref_audio_path": "vocal/dingzhen_1.wav",
+    "prompt_text": "子弹哥哥,生日快乐!我给你准备了一个生日礼物。",
+    "gpt_weight": "GPT_weights_v2/dingzhen-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/dingzhen_e8_s272.pth"
   }
 }
