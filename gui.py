@@ -1,5 +1,16 @@
 import sys
 import os
+
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+
+tool_dir = os.path.join(current_dir, "tool")
+
+
+if tool_dir not in sys.path:
+    sys.path.append(tool_dir)
+
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QLabel, QLineEdit, QTextEdit, QPushButton, QCheckBox, QVBoxLayout, QWidget, QFileDialog,
     QMessageBox, QDialog, QHBoxLayout
@@ -16,7 +27,7 @@ class UsherGUI(QMainWindow):
     def initUI(self):
         # 设置窗口标题和大小
         self.setWindowTitle("EASTMOUNT_WEBGAL 辅助工具")
-        self.setGeometry(100, 100, 600, 700)
+        self.resize(600, 700)
 
         # 设置赛博朋克风格的主色调
         palette = self.palette()
@@ -99,13 +110,58 @@ class UsherGUI(QMainWindow):
 
         self.add_char_map_button = QPushButton("添加角色映射")
 
+        self.view_char_map_button = QPushButton("查看角色映射")
+        self.view_char_map_button.clicked.connect(self.show_character_map)
+        self.char_map_layout.addWidget(self.view_char_map_button)
+
         self.add_char_map_button.clicked.connect(self.add_character_mapping)
 
         self.char_map_layout.addWidget(self.char_name_input)
         self.char_map_layout.addWidget(self.char_id_input)
         self.char_map_layout.addWidget(self.add_char_map_button)
 
+        # 要不要生成日语版本
+        self.translate_checkbox = QCheckBox("是否生成日语翻译版本", self)
+        layout.addWidget(self.translate_checkbox)
+
         layout.addLayout(self.char_map_layout)
+
+    # 查看角色映射
+    def show_character_map(self):
+        """读取并显示 character_map.json 的内容"""
+        character_map_path = "./character_map.json"
+        if not os.path.exists(character_map_path):
+            QMessageBox.information(self, "未找到映射", "当前未保存任何角色映射。")
+            return
+
+        try:
+            with open(character_map_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            QMessageBox.critical(self, "读取错误", f"无法读取角色映射文件: {e}")
+            return
+
+        # 构造显示文本
+        content = "\n".join([f"{k} ➜ {v}" for k, v in data.items()])
+
+        # 弹出窗口显示映射
+        dialog = QDialog(self)
+        dialog.setWindowTitle("角色映射列表")
+        dialog.resize(400, 300)
+        layout = QVBoxLayout()
+
+        text_edit = QTextEdit()
+        text_edit.setReadOnly(True)
+        text_edit.setText(content)
+        layout.addWidget(text_edit)
+
+        close_btn = QPushButton("关闭")
+        close_btn.clicked.connect(dialog.accept)
+        layout.addWidget(close_btn)
+
+        dialog.setLayout(layout)
+        dialog.exec_()
+
 
     def add_character_mapping(self):
         """把用户输入的角色名和ID添加到 character_map.json"""
@@ -178,22 +234,15 @@ class UsherGUI(QMainWindow):
         self.process.write(inputs.encode())
 
     def run_speechgen_script(self):
-        """Run the speechgen.py script and close the current window."""
-        # Check if speechgen.py exists
-        script_path = os.path.abspath("./tool/speechgen.py")  # 使用绝对路径
+        """使用独立 QProcess 后台运行 speechgen.py，不影响主进程监听 usher.py"""
+        script_path = os.path.abspath("./tool/speechgen.py")
         if not os.path.exists(script_path):
             QMessageBox.critical(self, "错误", f"未找到脚本文件: {script_path}")
             return
 
-        # Use the same Python interpreter as the current script
         python_executable = sys.executable
-
-        # Run speechgen.py
-        self.status_label.setText("正在运行语音生成，请稍候...")
-        self.process.start(python_executable, [script_path])
-
-        # Close the current window
-        # self.close()
+        process = QProcess(self)
+        process.startDetached(python_executable, [script_path])
 
     def handle_stdout(self):
         """Handle standard output from the process."""
@@ -215,6 +264,30 @@ class UsherGUI(QMainWindow):
     def process_finished(self):
         """Handle process completion and display output file."""
         self.status_label.setText("脚本运行完成！")
+
+        # 自动翻译 usher 输出的 json 文件（如 output/dialogue.json）
+        if self.translate_checkbox.isChecked():
+            scene_name = self.scene_input.text().strip()
+            original_json = os.path.abspath(f"./output/{scene_name}.json")
+            if os.path.exists(original_json):
+                try:
+                    try:
+                        from Masque import translate_json_file
+                    except Exception as e:
+                        QMessageBox.critical(self, "翻译模块加载失败", f"无法导入翻译功能: {e}")
+                        return
+
+                    try:
+                        output_path = translate_json_file(original_json)
+                        QMessageBox.information(self, "翻译成功", f"已生成日语版本:\n{output_path}")
+                    except Exception as e:
+                        QMessageBox.warning(self, "翻译失败", f"翻译失败: {e}")
+
+                    QMessageBox.information(self, "翻译成功", f"已生成日语版本:\n{output_path}")
+                except Exception as e:
+                    QMessageBox.warning(self, "翻译失败", f"翻译失败: {e}")
+            else:
+                QMessageBox.warning(self, "未找到 JSON", f"未找到需要翻译的 JSON 文件: {original_json}")
 
         # 检查 output.txt 文件是否存在
         output_file_path = os.path.abspath("./output/output.txt")

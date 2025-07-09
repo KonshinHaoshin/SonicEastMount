@@ -1,23 +1,149 @@
-;bgm:手游bgm/69_dark_waltz.mp3;
-changeBg:I（舞台）/1.png -next;
-setTransform:{"brightness":0.7,"contrast":0.8,"saturation":0.7,"gamma":0.5,"colorRed":212,"colorGreen":219,"colorBlue":233,"bloom":1,"bloomBrightness":0.7,"bloomBlur":10} -target=bg-main -duration=0 -next;
-changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_bow -expression=smile01;
-setTransform:{"brightness":0.8,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":220,"colorGreen":216,"colorBlue":232,"bloom":0.5,"bloomBrightness":0.8,"bloomBlur":10,"bevel":1,"bevelThickness":15,"bevelRotation":30,"bevelRed":176,"bevelGreen":196,"bevelBlue":255} -target=sakiko -duration=0;
-祥子:欢迎来到 Ave Mujica 的化妆舞会。今夜，为了各位嘉宾，我们准备了美丽的洋娃娃们 -sakiko/spec/event297-01-001.mp3 -id -figureId=sakiko;
-changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_nnf_left01 -expression=serious02;
-祥子:这是聪明的timoris -sakiko/spec/event297-01-006.mp3 -id -figureId=sakiko;
-changeFigure:东山新增/297模型/umiri/event_297_story_01/model.json -left -id=umiri -transform={"position":{"x":-200}} -next -motion=maskon_serious01 -expression=serious01;
-setTransform:{"position":{"x":-200},"brightness":0.8,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":220,"colorGreen":216,"colorBlue":232,"bloom":0.5,"bloomBrightness":0.8,"bloomBlur":10,"bevel":1,"bevelThickness":15,"bevelRotation":30,"bevelRed":176,"bevelGreen":196,"bevelBlue":255} -target=umiri -duration=0;
-海铃:我跟你说了多少遍了，第一题求平均2，8，14，16，20。求出来就是平均分44！ -umiri/xingbing/umiri_xingbing_01.wav -fontSize=default -id -figureId=umiri;
-changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_angry01 -expression=angry07;
-祥子:byd我们彩排呢！别给你那小女友打电话！ -sakiko/xingbing/sakiko_xingbing_03.wav -fontSize=default -id -figureId=sakiko;
-changeFigure:东山新增/297模型/umiri/event_297_story_01/model.json -left -id=umiri -next -motion=maskon_sad01 -expression=sad01;
-海铃:好的好的，我的问题 -umiri/xingbing/umiri_xingbing_02.wav -fontSize=default -id -figureId=umiri;
-changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_smile01 -expression=chunping01;
-祥子:慈爱的aminos -sakiko/spec/event297-01-007.mp3 -id -figureId=sakiko;
-changeFigure:东山新增/297模型/nyamu/event_297_story_01/model.json -right -id=nyamu -next -motion=maskon_serious01 -expression=surprised01;
-setTransform:{"position":{"x":200},"brightness":0.8,"contrast":1.1,"saturation":0.9,"gamma":0.8,"colorRed":220,"colorGreen":216,"colorBlue":232,"bloom":0.5,"bloomBrightness":0.8,"bloomBlur":10,"bevel":1,"bevelThickness":15,"bevelRotation":30,"bevelRed":176,"bevelGreen":196,"bevelBlue":255} -target=nyamu -duration=0;
-喵梦:这表情是人能做出来的啊…… -nyamu/xingbing/nyamu_xingbing_01.wav -fontSize=default -id -figureId=nyamu;
-changeFigure:东山新增/297模型/sk_dalei/event_297_story_01/model.json -id=sakiko -next -motion=maskon_smile01 -expression=chunping01;
-祥子:心慈的doloris -sakiko/spec/event297-01-008.mp3 -id -figureId=sakiko;
+changeBg:_spec/喵梦直播间.png;
+爱音:听见了耳熟能详的曲子呢~
+changeFigure:改模/非拼好模/nyamu/背心牛仔裤/model.json -id=nyamu -next -motion=nyamu_smile01 -expression=nyamu_smile03;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235} -target=nyamu -duration=0 -next;
+穿牛仔裤和抽象背心神秘人:嗨，这里是时价购物网！|“佑天寺……”啊不对，“燃灯寺时价购物网”;
+changeFigure:改模/非拼好模/nyamu/背心牛仔裤/model.json -id=nyamu -motion=nyamu_smile02 -expression=nyamu_smile02;
+穿牛仔裤和抽象背心神秘人:大家的欲望之友~;
+爱音:这主播好烧
+穿牛仔裤和抽象背心神秘人:这是主包我新开的带货节目，“燃灯寺时价购物网！”
+changeFigure:改模/非拼好模/nyamu/背心牛仔裤/model.json -id=nyamu -motion=nyamu_nnf04 -expression=rana_smile02;
+穿牛仔裤和抽象背心神秘人:总会以合适的价格将好东西带给大家！嗯~让你无法抗拒呢!
+changeFigure:改模/非拼好模/nyamu/背心牛仔裤/model.json -id=nyamu -motion=rana_niya01 -expression=rana_niya01;
+穿牛仔裤和抽象背心神秘人:好的，接下来三天这三天，为大家带来的商品请看好！
+changeFigure:改模/非拼好模/nyamu/背心牛仔裤/model.json -id=nyamu -motion=nyamu_smile01 -expression=nyamu_smile03;
+changeFigure:spine/sakiko/s000_templete_MyGO.json?type=spine -right -id=sakiko -next -motion=cool_donbiki_0;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235} -target=sakiko -duration=0 -next;
+穿牛仔裤和抽象背心神秘人:可爱哈基祥|仅限本购物网的超酷高质量玩偶！;
+changeFigure:改模/非拼好模/nyamu/背心牛仔裤/model.json -id=nyamu -motion=rana_e240_gacha01 -expression=rana_smile01;
+穿牛仔裤和抽象背心神秘人:哇奥~wonderful;
+穿牛仔裤和抽象背心神秘人:再加上随之赠送的，长崎牌丰胸……
+爱音:我买了!
 :;
+changeFigure:none -id=sakiko -next;
+changeFigure:none -id=nyamu -next;
+changeBg:E（live house）/E11.png;
+changeFigure:改模/拼好模/兔女郎小祥/兔女郎小祥.jsonl -id=sakiko -next -motion=angry07 -expression=angry07.exp -next;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235} -target=sakiko -duration=0 -next;
+祥子:你这家伙！|说了多少遍不要干什么乱七八糟的工作你偏不听！;
+喵梦:你这样子很没说服力啊，牢大~
+changeFigure:改模/拼好模/兔女郎小祥/兔女郎小祥.jsonl -id=sakiko -next -motion=surprised01 -expression=surprised01.exp -next;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":475,"y":0},"scale":{"x":1,"y":1}} -target=sakiko -duration=500 -next;
+changeFigure:改模/非拼好模/340_casual-2023_rip/model.json -id=nyamu -next -motion=angry01 -expression=angry01 -next;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-1542.6875,"y":0},"scale":{"x":1,"y":1}} -target=nyamu -duration=0 -next;
+setTransform:{"position":{"x":-475,"y":0},"scale":{"x":1,"y":1},"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235} -target=nyamu -duration=500 -next;
+喵梦:你穿这身衣服是去干啥了~
+changeFigure:改模/拼好模/兔女郎小祥/兔女郎小祥.jsonl -id=sakiko -next -motion=angry04 -expression=angry04.exp -next;
+祥子:当然是正经工作了！你个家伙在想什么呢！
+changeFigure:改模/非拼好模/340_casual-2023_rip/model.json -id=nyamu -next -motion=nf01 -expression=smile01 -next;
+喵梦:欸~
+changeFigure:改模/拼好模/巨大西装初华/巨大西装初华.jsonl -id=uika -next -motion=nnf05 -expression=smile01.exp;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":0},"scale":{"x":1,"y":1}} -target=uika -duration=0 -next;
+初华:好了好了，现在的当务之急是小祥他的玩偶被追回来没有
+changeFigure:改模/非拼好模/340_casual-2023_rip/model.json -id=nyamu -next -motion=sad01 -expression=sad01 -next;
+喵梦:本来就没卖出多少个，唉……|大部分还在发货前就被你们拦下来了
+changeFigure:改模/拼好模/兔女郎小祥/兔女郎小祥.jsonl -id=sakiko -next -motion=cry01 -expression=cry01.exp -next;
+祥子:没卖出……多少个吗……
+changeFigure:改模/拼好模/帅睦/帅睦.jsonl -id=mutsumi -next -motion=smile01 -expression=smile01.exp;
+setTransform:{"position":{"x":-1016.75,"y":0},"scale":{"x":1,"y":1},"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235} -target=mutsumi -duration=0 -next;
+睦:招笑;
+changeFigure:改模/拼好模/nanmiumiri/nanmiumiri.jsonl -id=umiri -next -motion=smile01 -expression=smile01;
+setTransform:{"position":{"x":1016.75,"y":0},"scale":{"x":1,"y":1},"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235} -target=umiri -duration=0;
+海铃:好了好了，多多少少还是卖出去了点的吧
+changeFigure:改模/非拼好模/340_casual-2023_rip/model.json -id=nyamu -next -motion=smile01 -expression=smile01 -next;
+喵梦:不是海子，你又发什么疯
+changeFigure:改模/非拼好模/340_casual-2023_rip/model.json -id=nyamu -next -motion=nf02 -expression=smile02 -next;
+喵梦:基本上在发货前都被拦下了，只有……
+changeFigure:改模/拼好模/nanmiumiri/nanmiumiri.jsonl -id=umiri -next -motion=sad01 -expression=sad01.exp;
+changeFigure:改模/拼好模/帅睦/帅睦.jsonl -id=mutsumi -next -motion=nf01 -expression=smile02;
+睦:还真有人买啊
+changeFigure:改模/拼好模/兔女郎小祥/兔女郎小祥.jsonl -id=sakiko -next -motion=smile01 -expression=smile01.exp -next;
+祥子:谁谁谁？谁买了？
+changeFigure:改模/非拼好模/340_casual-2023_rip/model.json -id=nyamu -next -motion=nf01 -expression=serious01 -next;
+喵梦:一个叫……东京爱音的人
+changeFigure:改模/拼好模/兔女郎小祥/兔女郎小祥.jsonl -id=sakiko -next -motion=surprised01 -expression=surprised01.exp -next;
+祥子:小爱……音？
+:;
+changeFigure:none -id=sakiko -next;
+changeFigure:none -id=nyamu -next;
+changeFigure: -id=umiri -next;
+changeFigure:none -id=mutsumi -next;
+changeFigure:none -id=uika -next;
+changeBg:A（anon家）/A5.jpg;
+changeFigure:改模/拼好模/祥子发型的爱音/祥子发型的爱音.jsonl -id=anon -motion=extend_Gt_nnf05s_v4 -expression=extend_chunping01 -next;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"scale":{"x":1,"y":1}} -target=anon -duration=0;
+changeFigure:spine/sakiko/s000_templete_MyGO.json?type=spine -id=sakiko01 -next -motion=cool_idle1_0;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":305.91999999999996}} -target=sakiko01 -duration=0;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":108.34666666666662}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":305.91999999999996}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":108.34666666666662}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":305.91999999999996}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":108.34666666666662}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":305.91999999999996}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":108.34666666666662}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":305.91999999999996}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":108.34666666666662}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":305.91999999999996}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":108.34666666666662}} -target=sakiko01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":0,"y":305.91999999999996}} -target=sakiko01 -duration=50;
+爱音:hee hee hee hee ~
+:;
+setTransform:{"position":{"x":-1255.875,"y":0},"scale":{"x":1,"y":1}} -target=bg-main -duration=500 -next;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"scale":{"x":1,"y":1},"position":{"x":-694.875,"y":0}} -target=anon -duration=500 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":305.91999999999996}} -target=sakiko01 -duration=500 -next;
+changeFigure:_spec/U3.jpg -id=bg-main01;
+changeFigure:改模/拼好模/草莓祥/草莓祥.jsonl -id=sakiko -motion=thinking01 -expression=thinking01 -next;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235} -target=sakiko -duration=0;
+祥子:哈基喵梦说的也对，以后还是回老家帮乡亲们摘草莓来钱比较
+changeFigure:改模/拼好模/草莓祥/草莓祥.jsonl -id=sakiko -motion=shame01 -expression=shame01 -next;
+setTransform:{"position":{"x":1255.875,"y":0},"scale":{"x":1,"y":1}} -target=bg-main01 -duration=500 -next;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":694.875,"y":0}} -target=sakiko -duration=500;
+祥子:怎么感觉脑袋湿湿的|坏了来感觉了
+changeFigure:spine/anon/anon_4k_winter/s000_templete_MyGO.json?type=spine -id=anon01 -next -motion=cool_idle1_0;
+setTransform:{"scale":{"x":0.5,"y":0.5},"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=0;
+changeFigure:spine/anon/anon_4k_winter/s000_templete_MyGO.json?type=spine -id=anon01 -next -motion=cool_idle1_back_0;
+祥子:今天也用用你吧~
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=500;
+changeFigure:改模/拼好模/草莓祥/草莓祥.jsonl -id=sakiko -motion=extend_Gt_nnf05s_v4 -expression=extend_chunping01 -next;
+祥子:hee hee hee hee ~
+changeFigure:改模/拼好模/祥子发型的爱音/祥子发型的爱音.jsonl -id=anon -motion=extend_Gt_nnf05s_v4 -expression=extend_chunping01 -next;
+changeFigure:改模/拼好模/草莓祥/草莓祥.jsonl -id=sakiko -motion=extend_Gt_nnf05s_v4 -expression=extend_chunping01 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":108.34666666666662}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":305.91999999999996}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":108.34666666666662}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":108.34666666666662}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":305.91999999999996}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":108.34666666666662}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":108.34666666666662}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":305.91999999999996}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":108.34666666666662}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":108.34666666666662}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":305.91999999999996}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":108.34666666666662}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":108.34666666666662}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":305.91999999999996}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":108.34666666666662}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":108.34666666666662}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":-714,"y":305.91999999999996}} -target=sakiko01 -duration=50 -next;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":108.34666666666662}} -target=anon01 -duration=50;
+setTransform:{"scale":{"x":0.5,"y":0.5},"rotation":-3,"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"position":{"x":714,"y":305.91999999999996}} -target=anon01 -duration=50;
+changeFigure:none -id=sakiko01 -next;
+changeFigure:改模/拼好模/祥子发型的爱音/祥子发型的爱音.jsonl -id=anon -motion=shame01 -expression=shame01 -next;
+爱音:我去脑袋湿湿的好难受
+changeFigure:none -id=anon01 -next;
+changeFigure:none -id=sakiko -next;
+changeFigure:none -id=bg-main01 -next;
+setTransform:{"position":{"x":0,"y":0},"scale":{"x":1,"y":1}} -target=bg-main -duration=500 -next;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"scale":{"x":1,"y":1},"position":{"x":0,"y":0}} -target=anon -duration=500 -next;
+changeFigure:anon/casual-4k/model.json -id=anon -next -motion=anon_e253_gacha01 -expression=下看震惊01.exp;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"scale":{"x":1,"y":1},"position":{"x":0,"y":0}} -target=anon -duration=500 -next;
+爱音:可恶，祥子的假发怎么莫名其妙被打湿了……
+changeFigure:改模/拼好模/魔族爱音/魔族爱音.jsonl -id=anon -next -motion=kime01 -expression=kime01;
+setTransform:{"brightness":1.1,"contrast":0.9,"saturation":0.8,"gamma":0.7,"colorRed":255,"colorGreen":255,"colorBlue":235,"bevel":1,"bevelThickness":10,"bevelRed":255,"bevelGreen":255,"bevelBlue":235,"scale":{"x":1,"y":1},"position":{"x":0,"y":0}} -target=anon -duration=0;
+爱音:换身衣服开第二场吧~

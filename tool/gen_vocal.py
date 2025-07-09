@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QL
                              QFileDialog, QTreeWidget, QTreeWidgetItem, QMessageBox, QHBoxLayout)
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtWidgets import QProgressBar
+
 from pygame import mixer
 import time
 
@@ -70,6 +71,8 @@ class WorkerThread(QThread):
         self.last_weights = (None, None)
         self.character_counters = {}  # 每个角色当前编号（无论是否成功，都会前进）
         self.sleep_time = sleep_time
+
+
 
     def run(self):
         os.makedirs(self.output_root, exist_ok=True)
@@ -234,7 +237,13 @@ class TTSApp(QMainWindow):
         file_path, _ = QFileDialog.getOpenFileName(self, "选择 JSONL 文件", default_dir, "JSONL Files (*.jsonl);;All Files (*)")
         if file_path:
             self.jsonl_file = file_path
-            self.base_name = os.path.splitext(os.path.basename(file_path))[0]
+            full_filename = os.path.basename(file_path)
+            self.base_name = os.path.splitext(full_filename)[0]
+
+            # ✅ 自动移除语言后缀（如 _ja、_zh）
+            if self.base_name.endswith("_ja") or self.base_name.endswith("_zh"):
+                self.base_name = self.base_name.rsplit("_", 1)[0]
+
             parts = self.base_name.split("_")
             self.character_name, self.scene_name = (parts + ["default"])[:2]
 

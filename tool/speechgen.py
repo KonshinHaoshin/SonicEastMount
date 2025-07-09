@@ -11,6 +11,17 @@ from PyQt5.QtCore import QTimer
 import subprocess
 import requests
 from requests.exceptions import RequestException
+import socket
+
+import pygame
+pygame.mixer.init()
+
+def is_port_in_use(host: str, port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.settimeout(1)
+        result = s.connect_ex((host, port))
+        return result == 0  # 0 表示连接成功，说明端口已被占用
+
 
 class SpeechGenApp(QMainWindow):
     def __init__(self):
@@ -76,15 +87,73 @@ class SpeechGenApp(QMainWindow):
 
         self.layout.addLayout(button_layout)
 
-
     def setup_character_input(self):
         hbox = QHBoxLayout()
         self.lbl_character = QLabel("角色名:")
+
         self.txt_character = QLineEdit()
         self.txt_character.setPlaceholderText("例如：anon 或 tomori")
+
+        self.cmb_preset_selector = QComboBox()
+        self.cmb_preset_selector.addItem("🔁 从预设选择")
+        self.cmb_preset_selector.currentTextChanged.connect(self.load_preset_into_ui)
+
         hbox.addWidget(self.lbl_character)
         hbox.addWidget(self.txt_character)
+        hbox.addWidget(self.cmb_preset_selector)
         self.layout.addLayout(hbox)
+
+        self.load_preset_keys_to_selector()
+
+    def load_preset_keys_to_selector(self):
+        preset_path = "./preset_map.json"
+        if os.path.exists(preset_path):
+            try:
+                with open(preset_path, "r", encoding="utf-8") as f:
+                    preset_data = json.load(f)
+                    self.cmb_preset_selector.addItems(sorted(preset_data.keys()))
+            except Exception as e:
+                self.output_text.append(f"❌ 加载预设失败：{str(e)}")
+
+    def load_preset_into_ui(self, preset_name):
+        if preset_name.startswith("🔁") or not preset_name.strip():
+            return
+
+        preset_path = "./preset_map.json"
+        if not os.path.exists(preset_path):
+            self.output_text.append("❌ 未找到 preset_map.json")
+            return
+
+        try:
+            with open(preset_path, "r", encoding="utf-8") as f:
+                preset_data = json.load(f)
+
+            preset = preset_data.get(preset_name, {})
+            if not preset:
+                self.output_text.append(f"⚠️ 未找到预设内容：{preset_name}")
+                return
+
+            # 回填到界面
+            self.txt_character.setText(preset_name)
+
+            lang_map_rev = {
+                "all_zh": "中文", "en": "English", "all_ja": "日本語", "all_yue": "粤语", "all_ko": "韩文",
+                "zh": "中英混合", "ja": "英日混和", "yue": "粤英混合", "ko": "韩英混合",
+                "auto": "多语种混合", "auto_yue": "多语种混合(粤语)"
+            }
+
+            self.cmb_text_lang.setCurrentText(lang_map_rev.get(preset.get("text_lang", ""), "中文"))
+            self.cmb_prompt_lang.setCurrentText(lang_map_rev.get(preset.get("prompt_lang", ""), "中文"))
+            self.cmb_audio_file.setCurrentText(preset.get("ref_audio_path", ""))
+            self.txt_prompt.setText(preset.get("prompt_text", ""))
+            self.cmb_gpt_weights.setCurrentText(preset.get("gpt_weight", ""))
+            self.cmb_sovits_weights.setCurrentText(preset.get("sovits_weight", ""))
+
+            self.output_text.append(f"✅ 已加载预设：{preset_name}")
+
+        except Exception as e:
+            self.output_text.append(f"❌ 加载预设失败：{str(e)}")
+
     def list_files_in_subdirs(self, root_dir, suffixes):
         result = []
         for root, _, files in os.walk(root_dir):
@@ -111,29 +180,27 @@ class SpeechGenApp(QMainWindow):
 
     def ask_and_save_preset(self):
         preset_file = "./preset_map.json"
+        key_name = self.txt_character.text().strip()
 
-        # 弹出输入框，输入键名
-        key_name, ok = QInputDialog.getText(self, "保存预设", "请输入预设的键名（如 anon、tomori）:")
-
-        if not ok or not key_name.strip():
-            self.output_text.setText("❌ 保存取消或未输入有效键名")
+        if not key_name:
+            self.output_text.setText("❌ 保存失败：角色名为空，请填写角色名")
             return
 
-        key_name = key_name.strip()
-
         try:
-            # 先加载已有 preset_map
+            # 加载现有预设
             if os.path.exists(preset_file):
                 with open(preset_file, "r", encoding="utf-8") as f:
                     preset_data = json.load(f)
             else:
                 preset_data = {}
 
-            # 准备当前界面的设置
-            lang_map = {"中文": "all_zh", "English": "en", "日本語": "all_ja",
-                        "粤语": "all_yue", "韩文": "all_ko", "中英混合": "zh",
-                        "英日混和": "ja", "粤英混合": "yue", "韩英混合": "ko",
-                        "多语种混合": "auto", "多语种混合(粤语)": "auto_yue"}
+            # 获取当前界面设置
+            lang_map = {
+                "中文": "all_zh", "English": "en", "日本語": "all_ja",
+                "粤语": "all_yue", "韩文": "all_ko", "中英混合": "zh",
+                "英日混和": "ja", "粤英混合": "yue", "韩英混合": "ko",
+                "多语种混合": "auto", "多语种混合(粤语)": "auto_yue"
+            }
 
             text_lang = lang_map[self.cmb_text_lang.currentText()]
             prompt_lang = lang_map[self.cmb_prompt_lang.currentText()]
@@ -151,7 +218,6 @@ class SpeechGenApp(QMainWindow):
                 "sovits_weight": sovits_weight
             }
 
-            # 写回 preset_map.json
             with open(preset_file, "w", encoding="utf-8") as f:
                 json.dump(preset_data, f, indent=2, ensure_ascii=False)
 
@@ -328,9 +394,31 @@ class SpeechGenApp(QMainWindow):
         self.cmb_audio_file.currentTextChanged.connect(lambda path: setattr(self, 'ref_audio_path', path))
 
         self.lbl_audio = QLabel("参考音频:")
+        btn_play_audio = QPushButton("▶播放")
+        btn_play_audio.clicked.connect(self.play_selected_audio)
+
         hbox.addWidget(self.lbl_audio)
         hbox.addWidget(self.cmb_audio_file)
+        hbox.addWidget(btn_play_audio)
         self.layout.addLayout(hbox)
+
+    def play_selected_audio(self):
+        try:
+            rel_path = self.cmb_audio_file.currentText()
+            full_path = os.path.join(self.base_dir, rel_path)
+
+            if not os.path.exists(full_path):
+                self.output_text.append("❌ 找不到音频文件")
+                return
+
+            pygame.mixer.music.stop()  # 停止当前播放
+            pygame.mixer.music.load(full_path)
+            pygame.mixer.music.play()
+            self.output_text.append(f"🎵 正在播放：{rel_path}")
+
+        except Exception as e:
+            self.output_text.append(f"❌ 播放失败: {str(e)}")
+
 
     def setup_prompt_input(self):
         hbox = QHBoxLayout()
@@ -503,6 +591,10 @@ class SpeechGenApp(QMainWindow):
 
     def start_api_service(self):
         try:
+            if is_port_in_use("127.0.0.1", 9865):
+                self.output_text.append("ℹ️ 检测到端口 9865 已被占用，API 服务可能已在运行，跳过启动。")
+                return
+
             if not os.path.exists(self.api_bat_path):
                 raise FileNotFoundError(f"API启动文件不存在：{self.api_bat_path}")
 
