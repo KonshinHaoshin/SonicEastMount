@@ -146,6 +146,10 @@ class SpeechGenApp(QMainWindow):
             self.cmb_prompt_lang.setCurrentText(lang_map_rev.get(preset.get("prompt_lang", ""), "中文"))
             self.cmb_audio_file.setCurrentText(preset.get("ref_audio_path", ""))
             self.txt_prompt.setText(preset.get("prompt_text", ""))
+            # 加载翻译提示字段
+            translate_prompt = preset.get("prompt", "")
+            if translate_prompt:
+                self.txt_translate_prompt.setText(translate_prompt)
             self.cmb_gpt_weights.setCurrentText(preset.get("gpt_weight", ""))
             self.cmb_sovits_weights.setCurrentText(preset.get("sovits_weight", ""))
 
@@ -206,6 +210,7 @@ class SpeechGenApp(QMainWindow):
             prompt_lang = lang_map[self.cmb_prompt_lang.currentText()]
             ref_audio = getattr(self, 'ref_audio_path', 'archive_default.wav')
             prompt_text = self.txt_prompt.text().strip() or ""
+            translate_prompt = self.txt_translate_prompt.text().strip() or ""
             gpt_weight = self.cmb_gpt_weights.currentText()
             sovits_weight = self.cmb_sovits_weights.currentText()
 
@@ -214,6 +219,7 @@ class SpeechGenApp(QMainWindow):
                 "prompt_lang": prompt_lang,
                 "ref_audio_path": ref_audio,
                 "prompt_text": prompt_text,
+                "prompt": translate_prompt,  # 新增翻译提示字段
                 "gpt_weight": gpt_weight,
                 "sovits_weight": sovits_weight
             }
@@ -308,6 +314,7 @@ class SpeechGenApp(QMainWindow):
                     prompt_lang = preset.get("prompt_lang", default_prompt_lang)
                     ref_audio = preset.get("ref_audio_path", default_ref_audio)
                     prompt_text = preset.get("prompt_text", default_prompt_text)
+                    translate_prompt = preset.get("prompt", "")  # 获取翻译提示字段
                     gpt_weight = preset.get("gpt_weight", default_gpt_weight)
                     sovits_weight = preset.get("sovits_weight", default_sovits_weight)
 
@@ -319,6 +326,7 @@ class SpeechGenApp(QMainWindow):
                             "ref_audio_path": ref_audio,
                             "prompt_text": prompt_text,
                             "prompt_lang": prompt_lang,
+                            "prompt": translate_prompt,  # 新增翻译提示字段
                             "text_split_method": "cut5",
                             "batch_size": 1,
                             "media_type": "wav",
@@ -421,8 +429,8 @@ class SpeechGenApp(QMainWindow):
 
 
     def setup_prompt_input(self):
-        hbox = QHBoxLayout()
-
+        # 提示文本部分
+        prompt_hbox = QHBoxLayout()
         self.lbl_prompt = QLabel("提示文本:")
         self.cmb_prompt_file = QComboBox()
         prompt_files = self.list_files_in_subdirs(self.audio_dirs["reference"], [".txt"])
@@ -430,11 +438,35 @@ class SpeechGenApp(QMainWindow):
         self.cmb_prompt_file.currentTextChanged.connect(self.load_prompt_from_dropdown)
 
         self.txt_prompt = QLineEdit()
+        self.txt_prompt.setPlaceholderText("输入角色语音提示文本")
 
-        hbox.addWidget(self.lbl_prompt)
-        hbox.addWidget(self.cmb_prompt_file)
-        hbox.addWidget(self.txt_prompt)
-        self.layout.addLayout(hbox)
+        prompt_hbox.addWidget(self.lbl_prompt)
+        prompt_hbox.addWidget(self.cmb_prompt_file)
+        prompt_hbox.addWidget(self.txt_prompt)
+        self.layout.addLayout(prompt_hbox)
+
+        # 翻译提示部分
+        translate_prompt_hbox = QHBoxLayout()
+        self.lbl_translate_prompt = QLabel("翻译提示:")
+        self.txt_translate_prompt = QLineEdit()
+        self.txt_translate_prompt.setPlaceholderText("可选：指导AI如何翻译（如：保持可爱语气、使用敬语等）")
+        
+        # 添加预设翻译提示的下拉框
+        self.cmb_translate_prompt_preset = QComboBox()
+        self.cmb_translate_prompt_preset.addItem("🔁 选择预设翻译提示")
+        self.cmb_translate_prompt_preset.addItems([
+            "保持可爱语气，使用假名表达外来语",
+            "使用敬语，保持礼貌的说话方式",
+            "使用年轻人常用的口语表达",
+            "保持角色原有的说话风格",
+            "翻译成自然的日语，避免直译"
+        ])
+        self.cmb_translate_prompt_preset.currentTextChanged.connect(self.load_translate_prompt_preset)
+
+        translate_prompt_hbox.addWidget(self.lbl_translate_prompt)
+        translate_prompt_hbox.addWidget(self.txt_translate_prompt)
+        translate_prompt_hbox.addWidget(self.cmb_translate_prompt_preset)
+        self.layout.addLayout(translate_prompt_hbox)
 
     def load_prompt_from_dropdown(self, rel_path):
         try:
@@ -443,6 +475,11 @@ class SpeechGenApp(QMainWindow):
                 self.txt_prompt.setText(f.read().strip())
         except Exception as e:
             self.output_text.append(f"❌ 提示文本加载失败：{str(e)}")
+
+    def load_translate_prompt_preset(self, preset_text):
+        if preset_text.startswith("🔁") or not preset_text.strip():
+            return
+        self.txt_translate_prompt.setText(preset_text)
 
     def setup_language_selection(self):
         hbox = QHBoxLayout()
@@ -553,6 +590,7 @@ class SpeechGenApp(QMainWindow):
 
             ref_audio = getattr(self, 'ref_audio_path', 'archive_default.wav')
             prompt_text = self.txt_prompt.text().strip() or ""
+            translate_prompt = self.txt_translate_prompt.text().strip() or ""
 
             with open(self.selected_file, "r", encoding="utf-8") as f:
                 lines = [line.strip() for line in f if line.strip()]
@@ -574,6 +612,7 @@ class SpeechGenApp(QMainWindow):
                         "ref_audio_path": ref_audio,
                         "prompt_text": prompt_text,
                         "prompt_lang": prompt_lang,
+                        "prompt": translate_prompt,  # 新增翻译提示字段
                         "text_split_method": "cut5",
                         "batch_size": 1,
                         "media_type": "wav",

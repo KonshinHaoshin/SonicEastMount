@@ -233,6 +233,8 @@ class UsherGUI(QMainWindow):
         inputs = f"{scene_name}\n{insert_audio}\n{organize_dialogue}\n"
         self.process.write(inputs.encode())
 
+        self.process.closeWriteChannel()
+
     def run_speechgen_script(self):
         """使用独立 QProcess 后台运行 speechgen.py，不影响主进程监听 usher.py"""
         script_path = os.path.abspath("./tool/speechgen.py")
@@ -246,12 +248,12 @@ class UsherGUI(QMainWindow):
 
     def handle_stdout(self):
         """Handle standard output from the process."""
-        output = self.process.readAllStandardOutput().data().decode("gbk", errors="ignore")
+        output = self.process.readAllStandardOutput().data().decode("utf-8", errors="ignore")
         self.status_label.setText(output)
 
     def handle_stderr(self):
         """Handle error output from the process."""
-        error = self.process.readAllStandardError().data().decode("gbk", errors="ignore")
+        error = self.process.readAllStandardError().data().decode("utf-8", errors="ignore")
         QMessageBox.critical(self, "脚本错误", error)
 
     def open_output_folder(self):

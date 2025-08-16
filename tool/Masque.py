@@ -77,7 +77,7 @@ def translate_json_file(input_path):
         for line in lines:
             replaced = replace_names(line, character_map)
             cleaned_text = remove_parentheses(replaced)
-            print(f"🔄 正在翻译：{cleaned_text}")
+            print(f"正在翻译：{cleaned_text}")
             translated = masque_translate(cleaned_text)
             translated_lines.append(translated)
         result[speaker] = translated_lines
