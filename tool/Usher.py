@@ -94,9 +94,88 @@ def delete_files_in_folder(folder):
             os.remove(file_path)
 
 
+def process_file_batch(file_paths, character_map, insert_audio, organize_dialogue, emotion_analysis, output_folder):
+    """
+    批量处理多个txt场景文件
+    
+    Args:
+        file_paths: txt文件路径列表
+        character_map: 角色映射字典
+        insert_audio: 是否插入音频 ('y' or 'n')
+        organize_dialogue: 是否整理台词 ('y' or 'n')
+        emotion_analysis: 是否进行情感分析 ('y' or 'n')
+        output_folder: 输出文件夹路径
+    """
+    os.makedirs(output_folder, exist_ok=True)
+    
+    for file_path in file_paths:
+        # 从文件名提取场景名（不含扩展名）
+        scene = os.path.splitext(os.path.basename(file_path))[0]
+        
+        print(f"处理场景: {scene} ({file_path})")
+        
+        # 初始化计数器
+        count_map = {name: 0 for name in character_map.keys()}
+        
+        # 读取对白
+        dialogues = list(read_lines(file_path))
+        
+        # 整理台词
+        if organize_dialogue == 'y':
+            process_dialogue(dialogues, character_map, scene, output_folder)
+        
+        # 处理并输出每一行对白到场景专属文件
+        scene_output_file = os.path.join(output_folder, f"{scene}.txt")
+        with open(scene_output_file, 'w', encoding='utf-8') as file:
+            for line in dialogues:
+                processed_line = process_line(line, scene, insert_audio, character_map, count_map)
+                file.write(processed_line + '\n')
+        
+        # 生成以场景名命名的 json 文件
+        scene_output_json = os.path.join(output_folder, f"{scene}.json")
+        dialogue_cache = {}
+        
+        for line in dialogues:
+            parts = line.split(":", 1)
+            if len(parts) != 2:
+                continue
+            name, text = parts[0].strip(), parts[1].strip()
+            nname = character_map.get(name)
+            if not nname:
+                continue
+            text_content = text.split("-")[0].strip()
+            # 去除（）和()内的文字
+            text_content = re.sub(r"[\(（][^）\)]+[\)）]", "", text_content).strip()
+            if nname not in dialogue_cache:
+                dialogue_cache[nname] = []
+            dialogue_cache[nname].append(text_content)
+        
+        # 如果需要情感分析，调用Masque进行情感标注
+        if emotion_analysis == 'y':
+            try:
+                import sys
+                # 添加当前目录到Python路径
+                current_dir = os.path.dirname(os.path.abspath(__file__))
+                if current_dir not in sys.path:
+                    sys.path.append(current_dir)
+                from Masque import analyze_emotions
+                dialogue_cache = analyze_emotions(dialogue_cache, character_map)
+            except Exception as e:
+                print(f"情感分析失败: {e}")
+        
+        with open(scene_output_json, 'w', encoding='utf-8') as json_file:
+            json.dump(dialogue_cache, json_file, ensure_ascii=False, indent=2)
+        
+        print(f"✅ 场景 {scene} 处理完成")
+    
+    print(f"\n🎉 批量处理完成！共处理 {len(file_paths)} 个场景文件")
+
+
 def main(file_path='./tool/input/usher.txt'):
     scene = input().strip()
     insert_audio = input().strip().lower()
+    organize_dialogue = input().strip().lower()
+    emotion_analysis = input().strip().lower()
 
     # 加载角色映射表
     character_map_path = './character_map.json'
@@ -108,8 +187,6 @@ def main(file_path='./tool/input/usher.txt'):
     # 清空 output 文件夹
     output_folder = './output'
     # delete_files_in_folder(output_folder)
-
-    organize_dialogue = input().strip().lower()
 
     # 读取对白
     dialogues = list(read_lines(file_path))
@@ -146,6 +223,19 @@ def main(file_path='./tool/input/usher.txt'):
         if nname not in dialogue_cache:
             dialogue_cache[nname] = []
         dialogue_cache[nname].append(text_content)
+
+    # 如果需要情感分析，调用Masque进行情感标注
+    if emotion_analysis == 'y':
+        try:
+            import sys
+            # 添加当前目录到Python路径
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            if current_dir not in sys.path:
+                sys.path.append(current_dir)
+            from Masque import analyze_emotions
+            dialogue_cache = analyze_emotions(dialogue_cache, character_map)
+        except Exception as e:
+            print(f"情感分析失败: {e}")
 
     with open(scene_output_json, 'w', encoding='utf-8') as json_file:
         json.dump(dialogue_cache, json_file, ensure_ascii=False, indent=2)

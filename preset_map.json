@@ -1,24 +1,24 @@
 {
-  "whiteanon": {
-    "text_lang": "zh",
+  "anon_idle": {
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/mygo/anon/Anon (1).wav",
     "prompt_text": "千早アノンです。家の都合で変な時期の入学ですが、よかったら仲良くしてください。よろしくお願いします。",
     "gpt_weight": "GPT_weights_v2/mygo/anon_v2-e15.ckpt",
     "sovits_weight": "SoVITS_weights_v2/mygo/anon_v2_e8_s848.pth",
-    "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
+    "prompt": "千早爱音（Chihaya Anon），来自《BanG Dream! It's MyGO!!!!!》。她是一名努力想扮演现充、时尚达人的女高中生，性格外向，有点小自恋，但本质善良且努力，有时会露出笨拙脆弱的一面。"
   },
-  "anonin": {
-    "text_lang": "zh",
+  "anon_weak": {
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
-    "ref_audio_path": "vocal/mygo/anon/anon6.wav",
-    "prompt_text": "みんな平均寿命って知ってる? 私たちがおばあちゃんになる頃には90歳とか言われてるんだよ",
+    "ref_audio_path": "vocal/mygo/anon/Anon (2).wav",
+    "prompt_text": "愛さず、無駄にまとめたけど、馴染むためにはこれくらいがいいよね。次は…",
     "gpt_weight": "GPT_weights_v2/mygo/anon_v2-e15.ckpt",
     "sovits_weight": "SoVITS_weights_v2/mygo/anon_v2_e8_s848.pth",
-    "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
+    "prompt": "千早爱音（Chihaya Anon），来自《BanG Dream! It's MyGO!!!!!》。她是一名努力想扮演现充、时尚达人的女高中生，性格外向，有点小自恋，但本质善良且努力，有时会露出笨拙脆弱的一面。"
   },
   "umiri": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/mujica/umiri/umiri01.mp3",
     "prompt_text": "そうですか 朝っ端からニヤニヤ笑ってるのが通常運転とは知りませんでした",
@@ -27,16 +27,16 @@
     "prompt": "使用敬语，保持礼貌的说话方式，体现成熟稳重的性格"
   },
   "uika": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/mujica/uika/uika01.mp3",
     "prompt_text": "何も言わなかったから、また、人間になれなかった。",
     "gpt_weight": "GPT_weights_v2/mujica/uika-e15.ckpt",
     "sovits_weight": "SoVITS_weights_v2/mujica/uika_e8_s128.pth",
-    "prompt": "使用敬语，保持礼貌的说话方式，体现成熟稳重的性格"
+    "prompt": "阳光开朗的偶像少女"
   },
   "uika0": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/mujica/uika/uika01.mp3",
     "prompt_text": "何も言わなかったから、また、人間になれなかった。",
@@ -44,17 +44,17 @@
     "sovits_weight": "SoVITS_weights_v2/mujica/uika_e8_s128.pth",
     "prompt": "使用敬语，保持礼貌的说话方式，体现成熟稳重的性格"
   },
-  "sakiko0": {
-    "text_lang": "zh",
+  "wsakiko": {
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/whitesakiko01.mp3",
     "prompt_text": "むつみ、もう少し左ですわ。真ん中に立つくらいの気持ちでいないとダメですわよ",
     "gpt_weight": "GPT_weights_v2/mujica/whitesakiko-e15.ckpt",
     "sovits_weight": "SoVITS_weights_v2/mujica/whitesakiko_e8_s272.pth",
-    "prompt": "使用敬语，保持礼貌的说话方式，体现成熟稳重的性格"
+    "prompt": "祥子出身丰川集团，从小接受贵族教育，因此她的语言习惯带有明显的敬语特征，即使在日常对话中也频繁使用「です」「ます」等礼貌体，甚至在一些非正式场合也会用「ですわ」这样的古典大小姐口癖"
   },
   "sakiko": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/blacksakiko.mp3",
     "prompt_text": "全員揃わないとできないルールなんてありませんわ。人のせいにしないで。",
@@ -63,7 +63,7 @@
     "sovits_weight": "SoVITS_weights_v2/mujica/blacksakiko_e8_s256.pth"
   },
   "tomori": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/tomori03.wav",
     "prompt_text": "早く戻ろ、私、ちゃんと歌えてた?",
@@ -72,7 +72,7 @@
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
   },
   "tomorin": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/tomori03.wav",
     "prompt_text": "早く戻ろ、私、ちゃんと歌えてた?",
@@ -81,16 +81,16 @@
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
   },
   "taki": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
-    "ref_audio_path": "vocal/taki.04.wav",
-    "prompt_text": "これ、いいかも。カラオケはよく行くけど。",
+    "ref_audio_path": "vocal/mygo/taki/Rikki (1).wav",
+    "prompt_text": "じゃあ迷惑かけないでやめてくれる?今日だって先こまちで",
+    "prompt": "很有气势",
     "gpt_weight": "GPT_weights_v2/mygo/椎名立希V2-e30.ckpt",
-    "sovits_weight": "SoVITS_weights_v2/mygo/椎名立希V2_e30_s450.pth",
-    "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
+    "sovits_weight": "SoVITS_weights_v2/mygo/椎名立希V2_e30_s450.pth"
   },
   "mutsumi": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/mutsumi0.wav",
     "prompt_text": "私はバンド楽しいって思ったこと",
@@ -98,8 +98,8 @@
     "sovits_weight": "SoVITS_weights_v2/mujica/mutsumi_v2_e8_s120.pth",
     "prompt": "使用敬语，保持礼貌的说话方式，体现成熟稳重的性格"
   },
-  "soyorin": {
-    "text_lang": "zh",
+  "soyo_happy": {
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/soyo02_0.wav",
     "prompt_text": "今日も菜園のお世話してるの?これは何の野菜?ピーマンかな?",
@@ -108,7 +108,7 @@
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
   },
   "rana": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/rana2.wav",
     "prompt_text": "ふん、感動した。そうだね、もう一個。",
@@ -117,7 +117,7 @@
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
   },
   "mortis": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/mujica/mortis/mortis15.wav",
     "prompt_text": "サキ子ちゃんが無事かやりたいって言うからやってるだけ\nギターなんて持ったことないもん",
@@ -126,7 +126,7 @@
     "prompt": "使用敬语，保持礼貌的说话方式，体现成熟稳重的性格"
   },
   "kokoro": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/other/kokoro/band3-001-002.mp3",
     "prompt_text": "あ、そこのあなた!ねぇ、何がいいと思う?",
@@ -135,7 +135,7 @@
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
   },
   "nyamu": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/mujica/nyamu/nyamu01.wav",
     "prompt_text": "こんばんにゃむにゃむ!にゃむちでーす!",
@@ -143,17 +143,17 @@
     "sovits_weight": "SoVITS_weights_v2/mujica/nyamu_e8_s328.pth",
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
   },
-  "soyo": {
-    "text_lang": "zh",
+  "soyo_idle": {
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/soyo01_01.wav",
     "prompt_text": "むつみちゃん、本当に思ったことそのまま言うよね。",
     "gpt_weight": "GPT_weights_v2/mygo/soyo_v2-e15.ckpt",
     "sovits_weight": "SoVITS_weights_v2/mygo/soyo_v2_e8_s440.pth",
-    "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
+    "prompt": "长崎素世的语言风格是她人格面具最核心的体现，其核心特点是 “表演性的温柔” 和 “算计性的礼貌” 。"
   },
   "mana": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/other/mana/mana01.wav",
     "prompt_text": "ういちゃん今日の歌めっちゃ良かった\nえへへ、褒められた",
@@ -162,30 +162,41 @@
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
   },
   "dingzhen": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_zh",
     "ref_audio_path": "vocal/dingzhen_1.wav",
     "prompt_text": "子弹哥哥,生日快乐!我给你准备了一个生日礼物。",
+    "prompt": "翻译成自然的日语，保持角色原有的说话风格",
     "gpt_weight": "GPT_weights_v2/dingzhen-e15.ckpt",
-    "sovits_weight": "SoVITS_weights_v2/dingzhen_e8_s272.pth",
-    "prompt": "翻译成自然的日语，保持角色原有的说话风格"
-  },
-  "anon": {
-    "text_lang": "zh",
-    "prompt_lang": "all_ja",
-    "ref_audio_path": "vocal/mygo/anon/Anon (2).wav",
-    "prompt_text": "愛さず、無駄にまとめたけど、馴染むためにはこれくらいがいいよね。次は…",
-    "gpt_weight": "GPT_weights_v2/mygo/anon_v2-e15.ckpt",
-    "sovits_weight": "SoVITS_weights_v2/mygo/anon_v2_e8_s848.pth",
-    "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
+    "sovits_weight": "SoVITS_weights_v2/dingzhen_e8_s272.pth"
   },
   "mashiro": {
-    "text_lang": "zh",
+    "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/morfornica/mashiro/mashiro_03.mp3",
     "prompt_text": "﻿でもボーカルの人ってみんな華やかなのに、私地味だし。\nそれに歌も得意っていうわけじゃないし。",
     "gpt_weight": "GPT_weights_v2/morfornica/mashiro/mashiro-e15.ckpt",
     "sovits_weight": "SoVITS_weights_v2/morfornica/mashiro/mashiro_e8_s400.pth",
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
+  },
+  "anon_sad": {
+    "text_lang": "all_zh",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mygo/anon/vocal/anon1沉重.wav",
+    "prompt_text": "はぁ、いちいち重いんだよなぁ。",
+    "prompt": "虚弱而悲伤",
+    "gpt_weight": "GPT_weights_v2/mygo/anon_v2-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mygo/anon_v2_e8_s848.pth",
+    "sample_steps": 8
+  },
+  "anon_angry": {
+    "text_lang": "all_zh",
+    "prompt_lang": "all_ja",
+    "ref_audio_path": "vocal/mygo/anon/vocal/anon6.wav",
+    "prompt_text": "みんな平均寿命って知ってる? 私たちがおばあちゃんになる頃には90歳とか言われてるんだよ",
+    "prompt": "有点小生气",
+    "gpt_weight": "GPT_weights_v2/mygo/anon_v2-e15.ckpt",
+    "sovits_weight": "SoVITS_weights_v2/mygo/anon_v2_e8_s848.pth",
+    "sample_steps": 8
   }
 }

@@ -1,0 +1,13 @@
+{
+  "anon": {
+    "idle":"anon_idle",
+    "weak":"anon_weak",
+    "angry":"anon_angry",
+    "sad": "anon_sad"
+  },
+  "soyo": {
+    "idle": "soyo_idle",
+    "happy": "soyo_happy"
+  }
+
+}

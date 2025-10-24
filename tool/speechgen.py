@@ -14,7 +14,9 @@ from requests.exceptions import RequestException
 import socket
 
 import pygame
+
 pygame.mixer.init()
+
 
 def is_port_in_use(host: str, port: int) -> bool:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -66,6 +68,7 @@ class SpeechGenApp(QMainWindow):
         self.setup_character_input()
         self.setup_prompt_input()
         self.setup_weights_selection()
+        self.setup_sample_steps_selection()
         self.setup_preset_generation()
         self.setup_save_preset()
         self.setup_batch_update_lang()
@@ -152,6 +155,9 @@ class SpeechGenApp(QMainWindow):
                 self.txt_translate_prompt.setText(translate_prompt)
             self.cmb_gpt_weights.setCurrentText(preset.get("gpt_weight", ""))
             self.cmb_sovits_weights.setCurrentText(preset.get("sovits_weight", ""))
+            # 加载采样步数
+            sample_steps = preset.get("sample_steps", 8)
+            self.cmb_sample_steps.setCurrentText(str(sample_steps))
 
             self.output_text.append(f"✅ 已加载预设：{preset_name}")
 
@@ -213,6 +219,7 @@ class SpeechGenApp(QMainWindow):
             translate_prompt = self.txt_translate_prompt.text().strip() or ""
             gpt_weight = self.cmb_gpt_weights.currentText()
             sovits_weight = self.cmb_sovits_weights.currentText()
+            sample_steps = int(self.cmb_sample_steps.currentText())
 
             preset_data[key_name] = {
                 "text_lang": text_lang,
@@ -221,7 +228,8 @@ class SpeechGenApp(QMainWindow):
                 "prompt_text": prompt_text,
                 "prompt": translate_prompt,  # 新增翻译提示字段
                 "gpt_weight": gpt_weight,
-                "sovits_weight": sovits_weight
+                "sovits_weight": sovits_weight,
+                "sample_steps": sample_steps
             }
 
             with open(preset_file, "w", encoding="utf-8") as f:
@@ -283,6 +291,7 @@ class SpeechGenApp(QMainWindow):
             default_prompt_text = self.txt_prompt.text().strip() or ""
             default_gpt_weight = self.cmb_gpt_weights.currentText()
             default_sovits_weight = self.cmb_sovits_weights.currentText()
+            default_sample_steps = int(self.cmb_sample_steps.currentText())
 
             # 加载场景
             with open(json_file, "r", encoding="utf-8") as f:
@@ -296,6 +305,13 @@ class SpeechGenApp(QMainWindow):
             else:
                 preset_data = {}
 
+            # 加载 emotions.json
+            emotions_path = "./assets/emotions.json"
+            emotions_data = {}
+            if os.path.exists(emotions_path):
+                with open(emotions_path, "r", encoding="utf-8") as f:
+                    emotions_data = json.load(f)
+
             # 输出在output目录下
             project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
             output_dir = os.path.join(project_root, "output")
@@ -308,20 +324,44 @@ class SpeechGenApp(QMainWindow):
             with open(output_path, "w", encoding="utf-8") as f_out:
                 count = 0
                 for character, lines in scene_data.items():
-                    preset = preset_data.get(character, {})  # 尝试读取角色对应的预设
-
-                    text_lang = preset.get("text_lang", default_text_lang)
-                    prompt_lang = preset.get("prompt_lang", default_prompt_lang)
-                    ref_audio = preset.get("ref_audio_path", default_ref_audio)
-                    prompt_text = preset.get("prompt_text", default_prompt_text)
-                    translate_prompt = preset.get("prompt", "")  # 获取翻译提示字段
-                    gpt_weight = preset.get("gpt_weight", default_gpt_weight)
-                    sovits_weight = preset.get("sovits_weight", default_sovits_weight)
-
                     for line in lines:
+                        # 处理新格式（包含情感标签）
+                        if isinstance(line, dict) and "text" in line and "emotion" in line:
+                            text = line["text"]
+                            emotion = line["emotion"]
+                            
+                            # 根据情感标签选择预设
+                            emotion_preset_key = f"{character}_{emotion}"
+                            preset = preset_data.get(emotion_preset_key, {})
+                            
+                            # 如果没找到情感预设，尝试使用角色默认预设
+                            if not preset:
+                                preset = preset_data.get(character, {})
+                            
+                            # 如果还是没找到，使用界面默认设置
+                            if not preset:
+                                preset = {}
+                        else:
+                            # 处理旧格式（纯文本）
+                            text = str(line)
+                            emotion = "idle"  # 默认情感
+                            
+                            # 使用角色默认预设
+                            preset = preset_data.get(character, {})
+
+                        # 获取配置参数
+                        text_lang = preset.get("text_lang", default_text_lang)
+                        prompt_lang = preset.get("prompt_lang", default_prompt_lang)
+                        ref_audio = preset.get("ref_audio_path", default_ref_audio)
+                        prompt_text = preset.get("prompt_text", default_prompt_text)
+                        translate_prompt = preset.get("prompt", "")  # 获取翻译提示字段
+                        gpt_weight = preset.get("gpt_weight", default_gpt_weight)
+                        sovits_weight = preset.get("sovits_weight", default_sovits_weight)
+                        sample_steps = preset.get("sample_steps", default_sample_steps)
+
                         config = {
-                            "character": character,
-                            "text": line,
+                            "character": character,  # 统一使用角色名
+                            "text": text,
                             "text_lang": text_lang,
                             "ref_audio_path": ref_audio,
                             "prompt_text": prompt_text,
@@ -331,6 +371,7 @@ class SpeechGenApp(QMainWindow):
                             "batch_size": 1,
                             "media_type": "wav",
                             "streaming_mode": False,
+                            "sample_steps": sample_steps,
                             "gpt_weight": gpt_weight,
                             "sovits_weight": sovits_weight
                         }
@@ -338,7 +379,7 @@ class SpeechGenApp(QMainWindow):
                         count += 1
 
             self.output_text.setText(
-                f"✅ 场景JSON转换完成！\n▸ 输出路径：{output_path}\n▸ 总条数：{count}")
+                f"✅ 场景JSON转换完成！\n▸ 输出路径：{output_path}\n▸ 总条数：{count}\n▸ 已根据情感标签选择对应预设")
 
         except Exception as e:
             self.output_text.setText(f"❌ 转换失败：{str(e)}")
@@ -385,7 +426,6 @@ class SpeechGenApp(QMainWindow):
         except Exception as e:
             self.output_text.setText(f"❌ 更新失败: {str(e)}")
 
-
     def choose_text_file(self):
         file_path, _ = QFileDialog.getOpenFileName(
             self, "选择文本文件", "", "Text Files (*.txt);;All Files (*)"
@@ -427,7 +467,6 @@ class SpeechGenApp(QMainWindow):
         except Exception as e:
             self.output_text.append(f"❌ 播放失败: {str(e)}")
 
-
     def setup_prompt_input(self):
         # 提示文本部分
         prompt_hbox = QHBoxLayout()
@@ -450,7 +489,7 @@ class SpeechGenApp(QMainWindow):
         self.lbl_translate_prompt = QLabel("翻译提示:")
         self.txt_translate_prompt = QLineEdit()
         self.txt_translate_prompt.setPlaceholderText("可选：指导AI如何翻译（如：保持可爱语气、使用敬语等）")
-        
+
         # 添加预设翻译提示的下拉框
         self.cmb_translate_prompt_preset = QComboBox()
         self.cmb_translate_prompt_preset.addItem("🔁 选择预设翻译提示")
@@ -487,8 +526,8 @@ class SpeechGenApp(QMainWindow):
         self.lbl_text_lang = QLabel("文本语言:")
         self.cmb_text_lang = QComboBox()
         self.cmb_text_lang.addItems(["中文", "English", "日本語", "粤语", "韩文",
-                                      "中英混合", "日英混合", "粤英混合", "韩英混合",
-                                      "多语种混合", "多语种混合(粤语)"])
+                                     "中英混合", "日英混合", "粤英混合", "韩英混合",
+                                     "多语种混合", "多语种混合(粤语)"])
 
         self.lbl_prompt_lang = QLabel("提示语言:")
         self.cmb_prompt_lang = QComboBox()
@@ -530,6 +569,25 @@ class SpeechGenApp(QMainWindow):
 
         self.cmb_gpt_weights.currentTextChanged.connect(lambda: self.set_weight_from_dropdown("gpt"))
         self.cmb_sovits_weights.currentTextChanged.connect(lambda: self.set_weight_from_dropdown("sovits"))
+
+    def setup_sample_steps_selection(self):
+        """设置采样步数选择"""
+        hbox = QHBoxLayout()
+        
+        self.lbl_sample_steps = QLabel("采样步数:")
+        self.cmb_sample_steps = QComboBox()
+        self.cmb_sample_steps.addItems(["4", "8", "16", "32", "64", "128"])
+        self.cmb_sample_steps.setCurrentText("8")  # 默认值
+        
+        self.lbl_sample_steps_info = QLabel("(v3模型推荐32, v4模型推荐8)")
+        self.lbl_sample_steps_info.setStyleSheet("color: #888; font-size: 12px;")
+        
+        hbox.addWidget(self.lbl_sample_steps)
+        hbox.addWidget(self.cmb_sample_steps)
+        hbox.addWidget(self.lbl_sample_steps_info)
+        hbox.addStretch()
+        
+        self.layout.addLayout(hbox)
 
     import re
 
@@ -581,9 +639,9 @@ class SpeechGenApp(QMainWindow):
 
         try:
             lang_map = {"中文": "all_zh", "English": "en", "日本語": "all_ja",
-                        "粤语":"all_yue","韩文":"all_ko","中英混合":"zh",
-                        "英日混和":"ja","粤英混合":"yue","韩英混合":"ko",
-                        "多语种混合":"auto","多语种混合(粤语)":"auto_yue"}
+                        "粤语": "all_yue", "韩文": "all_ko", "中英混合": "zh",
+                        "英日混和": "ja", "粤英混合": "yue", "韩英混合": "ko",
+                        "多语种混合": "auto", "多语种混合(粤语)": "auto_yue"}
 
             text_lang = lang_map[self.cmb_text_lang.currentText()]
             prompt_lang = lang_map[self.cmb_prompt_lang.currentText()]
@@ -601,6 +659,7 @@ class SpeechGenApp(QMainWindow):
                 # speechgen.py 中的 generate_config 末尾：
                 gpt_weight = self.cmb_gpt_weights.currentText()
                 sovits_weight = self.cmb_sovits_weights.currentText()
+                sample_steps = int(self.cmb_sample_steps.currentText())
 
                 character = self.txt_character.text().strip() or "unknown"
 
@@ -617,6 +676,7 @@ class SpeechGenApp(QMainWindow):
                         "batch_size": 1,
                         "media_type": "wav",
                         "streaming_mode": False,
+                        "sample_steps": sample_steps,
                         "gpt_weight": gpt_weight,
                         "sovits_weight": sovits_weight
                     }
@@ -671,7 +731,6 @@ class SpeechGenApp(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-
 
     qss_path = os.path.join(os.path.dirname(__file__), "../assets/style.qss")  # 相对路径
     if os.path.exists(qss_path):
