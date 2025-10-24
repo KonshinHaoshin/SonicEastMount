@@ -399,28 +399,61 @@ class TTSApp(QMainWindow):
             name_parts = filename.replace(".wav", "").split("_")
             character = name_parts[0]
             scene = name_parts[1]
-            index = int(name_parts[2]) - 1
+            file_index = int(name_parts[2])  # 文件名中的序号（如23）
+            
         except Exception:
             QMessageBox.critical(self, "错误", "文件名解析失败，无法定位数据")
             return
 
-        if 0 <= index < len(self.data_list):
-            self.status_label.setText(f"状态: 重新生成 {filename}...")
-            try:
-                data = self.data_list[index]
-                full_output_path = os.path.join(self.output_root, relative_path)
-                response = requests.post(url, json=data)
+        # 在data_list中找到对应角色的第N条数据
+        data_index = None
+        character_count = 0
+        
+        for i, data in enumerate(self.data_list):
+            if data.get("character") == character:
+                character_count += 1
+                if character_count == file_index:
+                    data_index = i
+                    break
+        
+        if data_index is None:
+            QMessageBox.critical(self, "错误", f"未找到 {character} 角色的第 {file_index} 条数据")
+            return
 
-                if response.status_code == 200:
-                    with open(full_output_path, "wb") as f:
-                        f.write(response.content)
-                    self.status_label.setText(f"状态: {filename} 重新生成完成")
-                else:
-                    raise Exception(response.text)
-            except Exception as e:
-                QMessageBox.critical(self, "错误", f"重新生成失败: {e}")
-        else:
-            QMessageBox.critical(self, "错误", "索引超出范围")
+        self.status_label.setText(f"状态: 重新生成 {filename} (第{file_index}条数据)...")
+        try:
+            data = self.data_list[data_index]
+            
+            # 切换权重（与WorkerThread中的逻辑保持一致）
+            gpt_weight = data.get("gpt_weight")
+            sovits_weight = data.get("sovits_weight")
+            
+            if gpt_weight:
+                try:
+                    requests.get(f"http://127.0.0.1:9865/set_gpt_weights?weights_path={gpt_weight}", timeout=10)
+                    self.status_label.setText(f"状态: 已切换GPT权重到 {gpt_weight}")
+                except requests.RequestException as e:
+                    self.status_label.setText(f"状态: GPT权重切换失败 {str(e)}")
+            
+            if sovits_weight:
+                try:
+                    requests.get(f"http://127.0.0.1:9865/set_sovits_weights?weights_path={sovits_weight}", timeout=10)
+                    self.status_label.setText(f"状态: 已切换SoVITS权重到 {sovits_weight}")
+                except requests.RequestException as e:
+                    self.status_label.setText(f"状态: SoVITS权重切换失败 {str(e)}")
+            
+            # 发送TTS请求
+            full_output_path = os.path.join(self.output_root, relative_path)
+            response = requests.post(url, json=data, timeout=600)
+
+            if response.status_code == 200:
+                with open(full_output_path, "wb") as f:
+                    f.write(response.content)
+                self.status_label.setText(f"状态: {filename} 重新生成完成")
+            else:
+                raise Exception(response.text)
+        except Exception as e:
+            QMessageBox.critical(self, "错误", f"重新生成失败: {e}")
 
 
 if __name__ == "__main__":

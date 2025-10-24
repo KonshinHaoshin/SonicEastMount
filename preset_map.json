@@ -1,5 +1,5 @@
 {
-  "anon_idle": {
+  "anon": {
     "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/mygo/anon/Anon (1).wav",
@@ -143,7 +143,7 @@
     "sovits_weight": "SoVITS_weights_v2/mujica/nyamu_e8_s328.pth",
     "prompt": "保持可爱语气，使用假名表达外来语，体现女子高中生的青春活力"
   },
-  "soyo_idle": {
+  "soyo": {
     "text_lang": "all_zh",
     "prompt_lang": "all_ja",
     "ref_audio_path": "vocal/soyo01_01.wav",

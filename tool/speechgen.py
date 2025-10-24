@@ -4,7 +4,9 @@ import json
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QPushButton,
     QLabel, QWidget, QTextEdit, QComboBox,
-    QHBoxLayout, QLineEdit, QFileDialog, QInputDialog
+    QHBoxLayout, QLineEdit, QFileDialog, QInputDialog,
+    QDialog, QTreeWidget, QTreeWidgetItem, QMessageBox,
+    QSplitter, QScrollArea, QFrame, QGridLayout
 )
 from PyQt5.QtGui import QFont, QPalette, QColor
 from PyQt5.QtCore import QTimer
@@ -16,6 +18,201 @@ import socket
 import pygame
 
 pygame.mixer.init()
+
+
+class EmotionsManagerDialog(QDialog):
+    """情感配置管理器对话框"""
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("情感配置管理器")
+        self.resize(600, 500)
+        self.emotions_data = {}
+        self.initUI()
+        self.load_emotions()
+    
+    def initUI(self):
+        layout = QVBoxLayout()
+        
+        # 标题
+        title = QLabel("情感配置管理")
+        title.setStyleSheet("font-size: 18px; font-weight: bold; margin: 10px 0;")
+        layout.addWidget(title)
+        
+        # 创建分割器
+        splitter = QSplitter()
+        
+        # 左侧：角色列表
+        left_widget = QWidget()
+        left_layout = QVBoxLayout()
+        left_layout.addWidget(QLabel("角色列表:"))
+        
+        self.character_tree = QTreeWidget()
+        self.character_tree.setHeaderLabels(["角色", "情感数量"])
+        self.character_tree.itemSelectionChanged.connect(self.on_character_selected)
+        left_layout.addWidget(self.character_tree)
+        
+        # 添加角色按钮
+        self.btn_add_character = QPushButton("添加角色")
+        self.btn_add_character.clicked.connect(self.add_character)
+        left_layout.addWidget(self.btn_add_character)
+        
+        left_widget.setLayout(left_layout)
+        
+        # 右侧：情感编辑区域
+        right_widget = QWidget()
+        right_layout = QVBoxLayout()
+        right_layout.addWidget(QLabel("情感编辑:"))
+        
+        # 滚动区域
+        scroll_area = QScrollArea()
+        scroll_widget = QWidget()
+        self.scroll_layout = QVBoxLayout()
+        scroll_widget.setLayout(self.scroll_layout)
+        scroll_area.setWidget(scroll_widget)
+        scroll_area.setWidgetResizable(True)
+        right_layout.addWidget(scroll_area)
+        
+        right_widget.setLayout(right_layout)
+        
+        splitter.addWidget(left_widget)
+        splitter.addWidget(right_widget)
+        splitter.setSizes([200, 400])
+        layout.addWidget(splitter)
+        
+        # 按钮区域
+        button_layout = QHBoxLayout()
+        self.btn_save = QPushButton("保存")
+        self.btn_save.clicked.connect(self.save_emotions)
+        self.btn_cancel = QPushButton("取消")
+        self.btn_cancel.clicked.connect(self.reject)
+        button_layout.addWidget(self.btn_save)
+        button_layout.addWidget(self.btn_cancel)
+        layout.addLayout(button_layout)
+        
+        self.setLayout(layout)
+    
+    def load_emotions(self):
+        """加载情感配置"""
+        emotions_path = "./assets/emotions.json"
+        if os.path.exists(emotions_path):
+            try:
+                with open(emotions_path, "r", encoding="utf-8") as f:
+                    self.emotions_data = json.load(f)
+            except Exception as e:
+                QMessageBox.critical(self, "错误", f"加载情感配置失败: {e}")
+                return
+        
+        self.update_character_tree()
+    
+    def update_character_tree(self):
+        """更新角色树"""
+        self.character_tree.clear()
+        for character, emotions in self.emotions_data.items():
+            item = QTreeWidgetItem([character, str(len(emotions))])
+            self.character_tree.addTopLevelItem(item)
+    
+    def add_character(self):
+        """添加新角色"""
+        character_name, ok = QInputDialog.getText(self, "添加角色", "请输入角色名:")
+        if ok and character_name.strip():
+            character_name = character_name.strip()
+            if character_name not in self.emotions_data:
+                self.emotions_data[character_name] = {}
+                self.update_character_tree()
+            else:
+                QMessageBox.warning(self, "警告", "角色已存在")
+    
+    def on_character_selected(self):
+        """角色选择改变时的处理"""
+        current_item = self.character_tree.currentItem()
+        if not current_item:
+            return
+        
+        character_name = current_item.text(0)
+        self.load_character_emotions(character_name)
+    
+    def load_character_emotions(self, character_name):
+        """加载角色的情感配置"""
+        # 清除之前的控件
+        for i in reversed(range(self.scroll_layout.count())):
+            self.scroll_layout.itemAt(i).widget().setParent(None)
+        
+        emotions = self.emotions_data.get(character_name, {})
+        
+        # 为每个情感创建编辑控件
+        for emotion, preset_key in emotions.items():
+            frame = QFrame()
+            frame.setFrameStyle(QFrame.Box)
+            frame_layout = QHBoxLayout()
+            
+            # 情感名
+            emotion_label = QLabel(f"情感: {emotion}")
+            frame_layout.addWidget(emotion_label)
+            
+            # 预设键
+            preset_input = QLineEdit()
+            preset_input.setText(preset_key)
+            preset_input.setPlaceholderText("预设键 (如: anon_idle)")
+            frame_layout.addWidget(preset_input)
+            
+            # 删除按钮
+            delete_btn = QPushButton("删除")
+            delete_btn.clicked.connect(lambda checked, c=character_name, e=emotion: self.delete_emotion(c, e))
+            frame_layout.addWidget(delete_btn)
+            
+            frame.setLayout(frame_layout)
+            self.scroll_layout.addWidget(frame)
+            
+            # 保存引用
+            if not hasattr(self, 'emotion_widgets'):
+                self.emotion_widgets = {}
+            self.emotion_widgets[f"{character_name}_{emotion}"] = preset_input
+        
+        # 添加情感按钮
+        add_emotion_btn = QPushButton(f"为 {character_name} 添加情感")
+        add_emotion_btn.clicked.connect(lambda: self.add_emotion(character_name))
+        self.scroll_layout.addWidget(add_emotion_btn)
+    
+    def add_emotion(self, character_name):
+        """为角色添加情感"""
+        emotion_name, ok = QInputDialog.getText(self, "添加情感", f"为 {character_name} 添加情感:")
+        if ok and emotion_name.strip():
+            emotion_name = emotion_name.strip()
+            if emotion_name not in self.emotions_data[character_name]:
+                self.emotions_data[character_name][emotion_name] = f"{character_name}_{emotion_name}"
+                self.load_character_emotions(character_name)
+                self.update_character_tree()
+            else:
+                QMessageBox.warning(self, "警告", "情感已存在")
+    
+    def delete_emotion(self, character_name, emotion_name):
+        """删除情感"""
+        reply = QMessageBox.question(self, "确认删除", f"确定要删除 {character_name} 的 {emotion_name} 情感吗？")
+        if reply == QMessageBox.Yes:
+            del self.emotions_data[character_name][emotion_name]
+            self.load_character_emotions(character_name)
+            self.update_character_tree()
+    
+    def save_emotions(self):
+        """保存情感配置"""
+        try:
+            # 更新数据
+            if hasattr(self, 'emotion_widgets'):
+                for key, widget in self.emotion_widgets.items():
+                    character_name, emotion_name = key.split('_', 1)
+                    self.emotions_data[character_name][emotion_name] = widget.text().strip()
+            
+            # 保存到文件
+            emotions_path = "./assets/emotions.json"
+            os.makedirs(os.path.dirname(emotions_path), exist_ok=True)
+            with open(emotions_path, 'w', encoding='utf-8') as f:
+                json.dump(self.emotions_data, f, ensure_ascii=False, indent=2)
+            
+            QMessageBox.information(self, "成功", "情感配置已保存")
+            self.accept()
+            
+        except Exception as e:
+            QMessageBox.critical(self, "错误", f"保存情感配置失败: {e}")
 
 
 def is_port_in_use(host: str, port: int) -> bool:
@@ -73,6 +270,9 @@ class SpeechGenApp(QMainWindow):
         self.setup_save_preset()
         self.setup_batch_update_lang()
 
+        # 添加配置文件管理区域
+        self.setup_config_management()
+
         self.output_text = QTextEdit()
         self.output_text.setObjectName("output_text")
         self.layout.addWidget(self.output_text)
@@ -92,7 +292,7 @@ class SpeechGenApp(QMainWindow):
 
     def setup_character_input(self):
         hbox = QHBoxLayout()
-        self.lbl_character = QLabel("角色名:")
+        self.lbl_character = QLabel("预设名:")
 
         self.txt_character = QLineEdit()
         self.txt_character.setPlaceholderText("例如：anon 或 tomori")
@@ -101,12 +301,35 @@ class SpeechGenApp(QMainWindow):
         self.cmb_preset_selector.addItem("🔁 从预设选择")
         self.cmb_preset_selector.currentTextChanged.connect(self.load_preset_into_ui)
 
+        # 添加刷新预设按钮
+        self.btn_refresh_presets = QPushButton("🔄 刷新预设")
+        self.btn_refresh_presets.setStyleSheet(
+            "background-color: #a6e22e; color: #272822; border-radius: 5px; padding: 5px; font-size: 12px;")
+        self.btn_refresh_presets.clicked.connect(self.refresh_preset_list)
+
         hbox.addWidget(self.lbl_character)
         hbox.addWidget(self.txt_character)
         hbox.addWidget(self.cmb_preset_selector)
+        hbox.addWidget(self.btn_refresh_presets)
         self.layout.addLayout(hbox)
 
         self.load_preset_keys_to_selector()
+
+    def refresh_preset_list(self):
+        """刷新预设列表"""
+        try:
+            # 清空当前列表
+            self.cmb_preset_selector.clear()
+            self.cmb_preset_selector.addItem("🔁 从预设选择")
+            
+            # 重新加载预设
+            self.load_preset_keys_to_selector()
+            
+            # 显示成功消息
+            self.output_text.append("✅ 预设列表已刷新")
+            
+        except Exception as e:
+            self.output_text.append(f"❌ 刷新预设列表失败：{str(e)}")
 
     def load_preset_keys_to_selector(self):
         preset_path = "./preset_map.json"
@@ -183,7 +406,14 @@ class SpeechGenApp(QMainWindow):
             "background-color: #a6e22e; color: #272822; border-radius: 5px; padding: 10px; font-size: 16px;")
         self.btn_save_current_preset.clicked.connect(self.ask_and_save_preset)
 
+        # 添加情感配置管理按钮
+        self.btn_manage_emotions = QPushButton("管理情感配置")
+        self.btn_manage_emotions.setStyleSheet(
+            "background-color: #fd971f; color: #272822; border-radius: 5px; padding: 10px; font-size: 16px;")
+        self.btn_manage_emotions.clicked.connect(self.open_emotions_manager)
+
         hbox.addWidget(self.btn_save_current_preset)
+        hbox.addWidget(self.btn_manage_emotions)
         self.layout.addLayout(hbox)
 
     from PyQt5.QtWidgets import QInputDialog
@@ -193,7 +423,7 @@ class SpeechGenApp(QMainWindow):
         key_name = self.txt_character.text().strip()
 
         if not key_name:
-            self.output_text.setText("❌ 保存失败：角色名为空，请填写角色名")
+            self.output_text.setText("❌ 保存失败：预设名为空，请填写预设名")
             return
 
         try:
@@ -325,17 +555,21 @@ class SpeechGenApp(QMainWindow):
                 count = 0
                 for character, lines in scene_data.items():
                     for line in lines:
-                        # 处理新格式（包含情感标签）
+                        # 处理情感标签
                         if isinstance(line, dict) and "text" in line and "emotion" in line:
                             text = line["text"]
                             emotion = line["emotion"]
                             
-                            # 根据情感标签选择预设
-                            emotion_preset_key = f"{character}_{emotion}"
-                            preset = preset_data.get(emotion_preset_key, {})
+                            # 根据emotions.json中的映射关系选择预设
+                            emotion_preset_key = None
+                            if character in emotions_data and emotion in emotions_data[character]:
+                                emotion_preset_key = emotions_data[character][emotion]
                             
-                            # 如果没找到情感预设，尝试使用角色默认预设
-                            if not preset:
+                            # 使用映射的预设键查找预设
+                            if emotion_preset_key:
+                                preset = preset_data.get(emotion_preset_key, {})
+                            else:
+                                # 如果emotions.json中没有映射，尝试使用角色默认预设
                                 preset = preset_data.get(character, {})
                             
                             # 如果还是没找到，使用界面默认设置
@@ -379,7 +613,7 @@ class SpeechGenApp(QMainWindow):
                         count += 1
 
             self.output_text.setText(
-                f"✅ 场景JSON转换完成！\n▸ 输出路径：{output_path}\n▸ 总条数：{count}\n▸ 已根据情感标签选择对应预设")
+                f"✅ 场景JSON转换完成！\n▸ 输出路径：{output_path}\n▸ 总条数：{count}\n▸ ")
 
         except Exception as e:
             self.output_text.setText(f"❌ 转换失败：{str(e)}")
@@ -425,6 +659,16 @@ class SpeechGenApp(QMainWindow):
 
         except Exception as e:
             self.output_text.setText(f"❌ 更新失败: {str(e)}")
+
+    def setup_config_management(self):
+        """设置配置文件管理区域"""
+        # 删除这个函数，因为不再需要独立的配置文件管理区域
+        pass
+
+    def open_emotions_manager(self):
+        """打开情感配置管理器"""
+        dialog = EmotionsManagerDialog(self)
+        dialog.exec_()
 
     def choose_text_file(self):
         file_path, _ = QFileDialog.getOpenFileName(
